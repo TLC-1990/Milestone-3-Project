@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "booking_system_app"
+    "booking_system_app",
     "restaurant_info",
 ]
 

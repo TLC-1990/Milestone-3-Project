@@ -45,8 +45,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "booking_system_app",
-    "restaurant_info",
+    "booking_system_app.apps.BookingSystemConfig",
+    "restaurant_info.apps.RestaurantInfoConfig"
+    "users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [

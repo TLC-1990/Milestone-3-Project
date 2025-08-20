@@ -40,14 +40,15 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.AddField(
-            model_name="reservation",
-            name="available_hour",
-            field=models.ForeignKey(
-                default=django.utils.timezone.now,
-                on_delete=django.db.models.deletion.CASCADE,
-                related_name="reservations",
-                to="booking_system_app.availablehour",
-            ),
+    model_name="reservation",
+    name="available_hour",
+    field=models.ForeignKey(
+        null=True,
+        blank=True,
+        on_delete=django.db.models.deletion.CASCADE,
+        related_name="reservations",
+        to="booking_system_app.availablehour",
+    ),
             preserve_default=False,
         ),
         migrations.CreateModel(

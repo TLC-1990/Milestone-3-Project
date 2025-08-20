@@ -32,4 +32,7 @@ def create_reservation_view(request):
         form = ReservationForm()
 
     return render(request, 'booking_system_app/reservation_form.html', {'form': form})
-    
+def index(request):
+    return render(request, 'booking_system_app/index.html')    
+def reservation_success(request):
+    return render(request, 'booking_system_app/success.html')

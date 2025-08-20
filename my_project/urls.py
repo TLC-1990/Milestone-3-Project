@@ -19,10 +19,13 @@ from django.contrib import admin
 from django.urls import path, include
 from booking_system_app import views as index_views
 from restaurant_info import views as info_views
+from users import views as user_views
 
 urlpatterns = [
-    path("", index_views.index, name="index"),
-    path('info/', info_views.rest_info, name='info'),
-    path("admin/", admin.site.urls),
     path("booking/", include("booking_system_app.urls")),
+    path('info/', info_views.rest_info, name='info'),
+    path('register/', user_views.register, name ='register'),
+    path('summernote/', include('django_summernote.urls')),
+    path("admin/", admin.site.urls),
+    path("", index_views.index, name="index"),
 ]

@@ -42,7 +42,7 @@ class WeekDay(models.Model):
     )
     day = models.IntegerField(choices=DAYS_OF_WEEK)
     def __str__(self):
-        return f"{self.get_day_display()} - {self.restaurant.username}"
+        return f"{self.get_day_display()} - {self.restaurant.email}"
 # timeslot
 class AvailableHour(models.Model): #Based on weekday
     weekday = models.ForeignKey(

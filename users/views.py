@@ -20,3 +20,15 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
+
+    print("Form valid:", form.cleaned_data)
+    from users.forms import UserRegisterForm
+form = UserRegisterForm({
+    'first_name': 'Test',
+    'last_name': 'User',
+    'email': 'test@example.com',
+    'password1': 'strongpassword123',
+    'password2': 'strongpassword123',
+})
+form.is_valid()
+form.save()

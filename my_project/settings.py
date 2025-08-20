@@ -152,11 +152,12 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
+    "https://spreadsheets.google.com/feeds",
+    "https://www.googleapis.com/auth/drive",
     ]
 GOOGLE_SHEET_NAME = 'thewurstoftimes_booking_spreadsheet'
 GOOGLE_CREDS_PATH = os.path.join(BASE_DIR, 'creds.json')
 
-CREDS = Credentials.from_service_account_file(GOOGLE_CREDS_PATH)
-SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+CREDS = Credentials.from_service_account_file(GOOGLE_CREDS_PATH, scopes=SCOPE)
+GSPREAD_CLIENT = gspread.authorize(CREDS)
 SHEET = GSPREAD_CLIENT.open(GOOGLE_SHEET_NAME)

@@ -11,11 +11,10 @@ def register(request):
         if form.is_valid():
             first_name = form.cleaned_data.get('first_name')
             last_name = form.cleaned_data.get('last_name')
-            phone = form.cleaned_data.get('phone')
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password1')
             form.save() 
-            append_customer_to_sheet(first_name, last_name, phone, email, password)
+            append_customer_to_sheet(first_name, last_name, email, password)
             messages.success(request, f'Account created for {email}!') 
             return redirect('booking') 
     else:

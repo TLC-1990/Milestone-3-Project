@@ -40,16 +40,16 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    "booking_system_app.apps.BookingSystemAppConfig",
+    "restaurant_info",
+    "users.apps.UsersConfig",
+    "crispy_forms",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "booking_system_app.apps.BookingSystemConfig",
-    "restaurant_info.apps.RestaurantInfoConfig"
-    "users.apps.UsersConfig",
-    "crispy_forms",
     'django_summernote',
 ]
 

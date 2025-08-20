@@ -1,52 +1,29 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% extends "blog/base.html" %}
+<!-- Load crispy form -->
+{% load crispy_forms_tags %} {% block content %}
 
-<!-- index.html content starts here -->
-<div class="container-fluid">
-    <div class="row">
-
-        <!-- Blog Entries Column -->
-        <div class="col-12 mt-3 left">
-            <div class="row">
-                {% for post in post_list %}
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="image-container">
-                                <div class="image-flash">
-                                    <p class="author">Author: {{ post.author }}</p>
-                                </div>
-                            </div>
-                            <a href="#" class="post-link">
-                                <h2 class="card-title">{{ post.title }}</h2>
-                            </a>
-
-                            <hr />
-                            <p class="card-text text-muted h6">{{ post.created_on}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                {% if forloop.counter|divisibleby:3 %}
-            </div>
-            <div class="row">
-                {% endif %}
-                {% endfor %}
-
-            </div>
-        </div>
+<div class="content-section">
+  <!-- Sign up form -->
+  <form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Join us today</legend>
+      {{ form|crispy }}
+    </fieldset>
+    <div class="form-group">
+      <button class="btn btn-outline-info" type="submit">Sign up</button>
     </div>
-    {% if is_paginated %}
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
-</div>
+  </form>
 
+  <!-- Sign in form -->
+  <div class="border-top pt-3">
+    <small class="text-muted">
+      Already have an account? <a class="ml-2" href="#">Sign in</a>
+    </small>
+  </div>
+</div>
+{% endblock content %}
 <!-- index.html content ends here -->
 {% endblock %}

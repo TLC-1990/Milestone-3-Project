@@ -26,6 +26,7 @@ urlpatterns = [
     path('info/', info_views.rest_info, name='info'),
     path('register/', user_views.register, name ='register'),
     path('summernote/', include('django_summernote.urls')),
+    path('users/', include('users.urls')),
     path("admin/", admin.site.urls),
     path("", index_views.index, name="index"),
 ]

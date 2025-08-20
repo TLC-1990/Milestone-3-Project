@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import gspread
+from google.oauth2.service_account import Credentials
 if os.path.isfile('env.py'):
     import env
 
@@ -28,7 +30,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'http://milestone-3-ede96df867cb.herokuapp.com',
@@ -147,3 +149,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+SCOPE = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    ]
+GOOGLE_SHEET_NAME = 'thewurstoftimes_booking_spreadsheet'
+GOOGLE_CREDS_PATH = os.path.join(BASE_DIR, 'creds.json')
+
+CREDS = Credentials.from_service_account_file(GOOGLE_CREDS_PATH)
+SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+SHEET = GSPREAD_CLIENT.open(GOOGLE_SHEET_NAME)

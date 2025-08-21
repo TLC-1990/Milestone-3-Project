@@ -17,17 +17,17 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from booking_system_app import views as index_views
+from djreservation import urls as djreservation_urls
 from restaurant_info import views as info_views
 from users import views as user_views
+from booking_system_app import views as index_views
+
 
 urlpatterns = [
-    path("booking/", include("booking_system_app.urls")),
-    path("booking/", include("booking.urls")),
-    path('info/', info_views.rest_info, name='info'),
+    
     path('restaurant_info/', include('restaurant_info.urls')),
     path('register/', include('users.urls')),
     path('summernote/', include('django_summernote.urls')),
     path("admin/", admin.site.urls),
     path("", index_views.index, name="index"),
-]
+] + djreservation_urls.urlpatterns

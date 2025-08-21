@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import json
 import gspread
 from google.oauth2.service_account import Credentials
 if os.path.isfile('env.py'):
@@ -160,6 +161,12 @@ SCOPE = [
 GOOGLE_SHEET_NAME = 'thewurstoftimes_booking_spreadsheet'
 GOOGLE_CREDS_PATH = os.path.join(BASE_DIR, 'creds.json')
 
-CREDS = Credentials.from_service_account_file(GOOGLE_CREDS_PATH, scopes=SCOPE)
+google_creds_json = os.getenv("GOOGLE_CREDS_JSON")
+
+if google_creds_json:
+    creds_info = json.loads(google_creds_json)
+    CREDS = Credentials.from_service_account_file(GOOGLE_CREDS_PATH, scopes=SCOPE)
+else:
+    CREDS = None
 GSPREAD_CLIENT = gspread.authorize(CREDS)
 SHEET = GSPREAD_CLIENT.open(GOOGLE_SHEET_NAME)

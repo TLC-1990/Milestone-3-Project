@@ -14,3 +14,4 @@ PyGreSQL==6.1.0
 sqlparse==0.5.3
 webencodings==0.5.1
 whitenoise==6.9.0
+djangify==1.0.0

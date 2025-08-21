@@ -23,7 +23,9 @@ from users import views as user_views
 
 urlpatterns = [
     path("booking/", include("booking_system_app.urls")),
+    path("booking/", include("booking.urls")),
     path('info/', info_views.rest_info, name='info'),
+    path('restaurant_info/', include('restaurant_info.urls')),
     path('register/', include('users.urls')),
     path('summernote/', include('django_summernote.urls')),
     path("admin/", admin.site.urls),

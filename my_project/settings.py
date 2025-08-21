@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'django_summernote',
+    'booking',
+    'djreservation',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'djreservation.middleware.ReservationMiddleware',
 ]
 
 ROOT_URLCONF = "my_project.urls"
@@ -153,20 +156,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
-SCOPE = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://spreadsheets.google.com/feeds",
-    "https://www.googleapis.com/auth/drive",
-    ]
-GOOGLE_SHEET_NAME = 'thewurstoftimes_booking_spreadsheet'
-GOOGLE_CREDS_PATH = os.path.join(BASE_DIR, 'creds.json')
 
-google_creds_json = os.getenv("GOOGLE_CREDS_JSON")
+BOOKING_TITLE = "Table booking"
+BOOKING_DESC = "Book a table for lunch at The Wurst of Times"
+BOOKING_BG = "img/booking_bg.jpg"
 
-if google_creds_json:
-    creds_info = json.loads(google_creds_json)
-    CREDS = Credentials.from_service_account_file(GOOGLE_CREDS_PATH, scopes=SCOPE)
-else:
-    CREDS = None
-GSPREAD_CLIENT = gspread.authorize(CREDS)
-SHEET = GSPREAD_CLIENT.open(GOOGLE_SHEET_NAME)
+BOOKING_SUCCESS_REDIRECT_URL = "reservation/success/"
+BOOKING_DISABLE_URL = "reservation/disabled/"
+
+DEFAULT_FROM_EMAIL = "lt5sksmq@students.codeinstitute.net"
+EMAIL_HOST = "localhost"
+EMAIL_PORT = "1025"

@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="booking_home"),
-    path("reserve/", views.create_reservation_view, name="create-reservation-view"), 
-    path('success/', views.reservation_success, name='reservation-success')
+    path("reserve/", views.create_reservation_view, name="create_reservation_view"), 
+    path('success/', views.reservation_success, name='reservation_success'),
+    path("reservation/form/", views.reservation_form, name="reservation_form"),
 ]

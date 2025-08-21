@@ -7,8 +7,10 @@ from .models import TableReservationSlot
 
 # Create your views here.
 def home(request):
-    return render(request, "home.html")
+    return render(request, "booking_system_app/home.html")
 
+def menu(request):
+    return render(request, "booking_system_app/menu.html")
 
 
 class TableReservation(SimpleProductReservation):

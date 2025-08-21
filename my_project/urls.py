@@ -29,5 +29,5 @@ urlpatterns = [
     path('register/', include('users.urls')),
     path('summernote/', include('django_summernote.urls')),
     path("admin/", admin.site.urls),
-    path("", index_views.index, name="index"),
+    path("", include("booking_system_app.urls")),
 ] + djreservation_urls.urlpatterns

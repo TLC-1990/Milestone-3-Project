@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 # Create your models here.
 #creating table name, location of table and number of seats
 class Table(models.Model):
-  name = models.Charfield(max_length=30) 
+  name = models.CharField(max_length=30) 
   location = models.CharField(max_length=30, blank=True) 
   capacity = models.PositiveBigIntegerField()  
   

@@ -6,8 +6,8 @@ from djreservation.views import SimpleProductReservation
 from .models import TableReservationSlot
 
 # Create your views here.
-def index(request):
-    return HttpResponse("Welcome to the booking system!")
+def home(request):
+    return render(request, "home.html")
 
 
 

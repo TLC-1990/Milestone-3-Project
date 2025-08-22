@@ -18,6 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from djreservation import urls as djreservation_urls
+from booking_system_app import views as booking_views
 
 
 urlpatterns = [
@@ -26,5 +27,7 @@ urlpatterns = [
     path('register/', include('users.urls')),
     path('summernote/', include('django_summernote.urls')),
     path("admin/", admin.site.urls),
-    path("", include("booking_system_app.urls")),
+    
+    
+    path("", booking_views, name="home"),
 ] + djreservation_urls.urlpatterns

@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.utils import timezone
 from djreservation.views import SimpleProductReservation
 from .models import TableReservationSlot
+from .forms import TableReservationForm
 
 # Create your views here.
 def home(request):
@@ -15,10 +16,14 @@ def menu(request):
 def table_reservations(request):
     return render(request, "booking_system_app/reservation_form.html")
 
+def reservation_success(request):
+    return render(request, "booking_system_app/reservation_success.html")
+
 
 class TableReservation(SimpleProductReservation):
     base_model = TableReservationSlot
-    amount_field = 'quantity'       
-    max_amount_field = 'max_amount' 
+    amount_field = 'quantity'
+    max_amount_field = 'max_amount'
     extra_display_field = ['table', 'time_slot']
     template_name = "booking_system_app/reservation_form.html"
+    form_class = TableReservationForm 

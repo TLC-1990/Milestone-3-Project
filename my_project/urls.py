@@ -23,11 +23,10 @@ from booking_system_app import views as booking_views
 
 urlpatterns = [
     path('restaurant_info/', include('restaurant_info.urls')),
-    path('reservations/', include("booking_system_app.urls")),
     path('register/', include('users.urls')),
     path('summernote/', include('django_summernote.urls')),
     path("admin/", admin.site.urls),
+    path("reservations/", include("booking_system_app.urls")),
     
-    
-    path("", booking_views, name="home"),
+    path("", booking_views.home, name="home")
 ] + djreservation_urls.urlpatterns

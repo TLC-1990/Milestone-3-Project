@@ -12,11 +12,12 @@ class Table(models.Model):
   location = models.CharField(max_length=30, blank=True)
   capacity = models.PositiveBigIntegerField()
   
-#creating time of reservation, number of guests in booking and table capacity 
+#creating time of reservation, number of guests in booking, availability and table capacity 
 class TableReservationSlot(models.Model):
   table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='slots')
   time_slot = models.DateTimeField()
   quantity = models.PositiveBigIntegerField(default=1)
+  available = models.BooleanField(default=True)
   max_amount = models.PositiveBigIntegerField()
   
 #prevents the table from being booked again at the same time

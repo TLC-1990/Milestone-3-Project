@@ -34,7 +34,7 @@
                         <a class="nav-link" href="{% url 'menu' %}">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'table_reservations' %}">Reservations</a>
+                        <a class="nav-link" href="{% url 'table_reservation' pk=1 %}">Reservations</a>
                     </li>
                 </ul>
             </div>
@@ -45,7 +45,7 @@
     <section class="hero text-center">
         <h1>The Wurst Hotdogs in Town</h1>
         <p class="lead">Gourmet dogs, craft beer, and a side of bad puns.</p>
-        <a href="{% url 'table_reservations' %}" class="btn btn-reserve mt-3">Reserve a Table</a>
+        <a href="{% url 'table_reservation' pk=1 %}" class="btn btn-reserve mt-3">Reserve a Table</a>
     </section>
     {% endif %}
 

@@ -14,7 +14,7 @@
     {% block extra_head %}{% endblock %}
 </head>
 <body>
-
+<header>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -40,12 +40,19 @@
             </div>
         </div>
     </nav>
+    </header>
         <!-- Hero Banner -->
     {% if request.resolver_match.url_name == 'home' %}
     <section class="hero text-center">
         <h1>The Wurst Hotdogs in Town</h1>
         <p class="lead">Gourmet dogs, craft beer, and a side of bad puns.</p>
         <a href="{% url 'table_reservation' pk=1 %}" class="btn btn-reserve mt-3">Reserve a Table</a>
+        {% if user.is_authenticated %}
+<p>Hi {{ user.username }}!</p>
+{% else %}
+<p>You are not logged in.</p>
+<a href="{% url 'login' %}">Log In</a>
+{% endif %}
     </section>
     {% endif %}
 

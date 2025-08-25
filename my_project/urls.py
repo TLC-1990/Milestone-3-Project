@@ -24,10 +24,12 @@ from booking_system_app import views as booking_views
 
 
 urlpatterns = [
+    path("admin/", admin.site.urls),
+    path('accounts/', include("django.contrib.auth.urls")),
     path('restaurant_info/', include('restaurant_info.urls')),
     path('register/', include('users.urls')),
     path('summernote/', include('django_summernote.urls')),
-    path("admin/", admin.site.urls),
+    
     
     path("", lambda request: redirect("home")),
     path("menu/", booking_views.menu, name="menu"),

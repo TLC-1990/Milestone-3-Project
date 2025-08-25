@@ -169,3 +169,6 @@ BOOKING_DISABLE_URL = "reservation/disabled/"
 DEFAULT_FROM_EMAIL = "lt5sksmq@students.codeinstitute.net"
 EMAIL_HOST = "localhost"
 EMAIL_PORT = "1025"
+
+LOGIN_REDIRECT_URL = 'reservation_form'
+LOGOUT_REDIRECT_URL  = 'home'

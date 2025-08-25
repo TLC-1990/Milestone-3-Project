@@ -45,6 +45,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     "booking_system_app.apps.BookingSystemAppConfig",
     "restaurant_info",
+    "accounts.apps.AccountsConfig",
     "users.apps.UsersConfig",
     "crispy_bootstrap5",
     "django.contrib.admin",

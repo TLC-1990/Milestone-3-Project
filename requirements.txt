@@ -1,3 +1,4 @@
+annotated-types==0.7.0
 asgiref==3.9.1
 bleach==6.2.0
 cachetools==5.5.2
@@ -8,6 +9,7 @@ crispy-bootstrap5==2025.6
 dj-database-url==0.5.0
 djangify==1.0.0
 Django==5.2.5
+django-bootstrap-datepicker-plus==5.0.5
 django-countries==7.6.1
 django-crispy-forms==2.4
 django-hvad==1.8.0
@@ -26,12 +28,15 @@ psycopg2==2.9.10
 psycopg2-binary==2.9.10
 pyasn1==0.6.1
 pyasn1_modules==0.4.2
+pydantic==2.11.7
+pydantic_core==2.33.2
 PyGreSQL==6.1.0
 requests==2.32.5
 requests-oauthlib==2.0.0
 rsa==4.9.1
 setuptools==80.9.0
 sqlparse==0.5.3
+typing-inspection==0.4.1
 typing_extensions==4.14.1
 urllib3==2.5.0
 webencodings==0.5.1

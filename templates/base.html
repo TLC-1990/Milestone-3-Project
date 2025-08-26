@@ -6,8 +6,10 @@
     <meta charset="UTF-8">
     <title>{% block title %}The Wurst of Times{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<!--JQuery to load ahead of form.media-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- CSS, Google Fonts and Bootstrap links -->
+
 <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -58,7 +60,7 @@
     {% endif %}
 
     <!-- Main Content -->
-    <main class="container py-4">
+    <main class="flex-fill container py-4">
         {% block content %}
         <!-- Page content will be injected here -->
         {% endblock %}

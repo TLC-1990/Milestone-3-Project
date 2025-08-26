@@ -44,6 +44,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     "booking_system_app.apps.BookingSystemAppConfig",
+    "bootstrap_datepicker_plus",
     "restaurant_info",
     "accounts.apps.AccountsConfig",
     "users.apps.UsersConfig",
@@ -144,7 +145,7 @@ STATIC_URL = "/static/"
 import os
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    BASE_DIR / "static",   # optional: global static folder
+    BASE_DIR / "static", 
 ]
 
 MEDIA_URL = '/media/'

@@ -12,6 +12,7 @@
 
     <form method="POST" novalidate>
       {% csrf_token %}
+      {{ form.media }}
       {{ form.as_p }}
       <button type="submit" class="btn btn-primary mt-2">Book Now</button>
     </form>

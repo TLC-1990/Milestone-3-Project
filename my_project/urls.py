@@ -20,6 +20,7 @@ from django.urls import path, include
 from django.shortcuts import redirect
 from djreservation import urls as djreservation_urls
 from booking_system_app import views as booking_views
+from accounts import views as CustomLoginView
 
 
 

@@ -1,16 +1,8 @@
 from django import forms
 from .models import TableReservationSlot
-import datetime
+from bootstrap_datepicker_plus.widgets import DatePickerInput
+from datetime import date, datetime
 
-DAYS_OF_THE_WEEK = [
-    ('monday', 'Monday'),
-    ('tuesday', 'Tuesday'),
-    ('wednesday', 'Wednesday'),
-    ('thursday', 'Thursday'),
-    ('friday', 'Friday'),
-    ('saturday', 'Saturday'),
-    ('sunday', 'Sunday'),
-]
 
 TIME_SLOTS = [
     ("12:00", "12:00 PM"),
@@ -25,13 +17,50 @@ TIME_SLOTS = [
 ]
 
 class TableReservationForm(forms.ModelForm):
-    day=forms.ChoiceField(choices=DAYS_OF_THE_WEEK,label="Day of the week")
+    date=forms.DateField(
+        widget=DatePickerInput(
+            options={
+                "format": "DD-MM-YYYY",
+                "minDate":str(date.today()),
+                "showClose": True,
+                "showClear": True,
+                "showTodayButton":True,
+            }
+        ),
+        label="Reservation Date"
+    )
     time=forms.ChoiceField(choices=TIME_SLOTS, label="Time slot")
     
-    
+    num_people = forms.IntegerField(
+        label="Number of guests",
+        min_value=1,
+        widget=forms.NumberInput(attrs={"class":"form-control"})
+
+    )
     class Meta:
         model = TableReservationSlot
-        fields = ["table", "time_slot", "quantity"]
+        fields = ["table", "date", "time", "num_people"]
         
     def clean(self):
         cleaned_data = super().clean()
+        
+    def clean_date(self):
+      selected_date = self.cleaned_data['date']
+      if selected_date < date.today():
+        raise forms.ValidationError("You cannot book a table in the past!")
+      return selected_date
+    
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        
+        selected_date = self.cleaned_data["date"]
+        selected_time = self.cleaned_data["time"]
+        instance.time_slot = datetime.strptime(
+            f"{selected_date} {selected_time}", "%Y-%m-%d %H:%M"
+        )
+        
+        instance.amount = self.cleaned_data["num_people"]
+        
+        if commit:
+            instance.save()
+        return instance

@@ -3,6 +3,9 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+main {
+    flex:1;
+}
 .brand {
     font-family: 'Luckiest Guy', cursive;
     font-size: 2rem;
@@ -41,6 +44,13 @@ body {
 }
 
 footer {
-    background-color: #222;
-    color: #ddd;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    
 }

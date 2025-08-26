@@ -9,3 +9,4 @@ urlpatterns = [
     path("success/", reservation_success, name="reservation_success"),
     path("<int:pk>/", TableReservation.as_view(), name="table_reservation"),
 ]
+

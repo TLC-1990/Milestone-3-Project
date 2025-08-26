@@ -32,13 +32,9 @@ class TableReservationForm(forms.ModelForm):
     )
     time=forms.ChoiceField(choices=TIME_SLOTS, label="Time slot")
     
-    available_amount = forms.IntegerField(
+    amount = forms.IntegerFieldField(
         label="Number of Guests",
-        min_value=1,
-        max_value=5,
-        error_messages= {
-            "max_value": "Sorry, we can only accept bookings of 5 people or fewer per table"
-            },
+        choices=[(i, str(i)) for i in range(1, 6)],
         widget=forms.NumberInput(attrs={"class":"form-control"})
     )
     
@@ -70,8 +66,6 @@ class TableReservationForm(forms.ModelForm):
         instance.time_slot = datetime.strptime(
             f"{selected_date} {selected_time}", "%Y-%m-%d %H:%M"
         )
-        
-        instance.amount = self.cleaned_data["available_amount"]
         
         if commit:
             instance.save()

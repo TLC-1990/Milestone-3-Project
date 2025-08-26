@@ -18,8 +18,8 @@ class Table(models.Model):
     ('inside', 'Inside'),
     ('outside', 'Outside')
   ]
-  name = models.CharField(max_length=30)
-  location = models.CharField(max_length=30, choices=LOCATION_CHOICES, blank=True)
+  name = models.CharField(max_length=50)
+  location = models.CharField(max_length=10, choices=LOCATION_CHOICES)
   capacity = models.PositiveBigIntegerField()
   
   def __str__(self):
@@ -67,7 +67,6 @@ class TableReservationSlot(models.Model):
     return max(self.max_amount - self.amount, 0)
   
   def save(self, *args, **kwargs):
-      self.available_amount = max(self.max_amount - self.amount, 0)
       super().save(*args, **kwargs)
   
   def __str__(self):

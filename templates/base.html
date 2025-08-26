@@ -36,7 +36,7 @@
                         <a class="nav-link" href="{% url 'menu' %}">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'table_reservation' pk=1 %}">Reservations</a>
+                        <a class="nav-link" href="{% url 'table_reservation' pk=1%}">Reservations</a>
                     </li>
                 </ul>
             </div>
@@ -69,7 +69,7 @@
     <!-- Footer -->
     <footer id="contact" class="bg-light text-dark mt-auto">
         <div class="container text-center py-4">
-        <p class="mb-0">&copy; {{ year }} The Wurst of Times. All rights reserved.</p>
+        <p class="mb-0">&copy; {% now "Y"%} The Wurst of Times. All rights reserved.</p>
         <p class="mb-0">📍 123 Food Street, Flavor Town | ☎ (123) 456-7890</p>
         <p>Follow us on:
                 <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>

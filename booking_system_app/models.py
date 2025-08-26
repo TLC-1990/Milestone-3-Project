@@ -32,6 +32,8 @@ class TableReservationSlot(models.Model):
   amount = models.PositiveBigIntegerField(default=1)
   available = models.BooleanField(default=True)
   max_amount = models.PositiveBigIntegerField()
+  notes = models.TextField(blank=True, null=True)
+  
   
 #prevents the table from being booked again at the same time
   class Meta:
@@ -48,7 +50,7 @@ class TableReservationSlot(models.Model):
         
         if existing_bookings >= MAX_TABLES_PER_LOCATION[location]:
           raise ValidationError(
-            f"Sorry! All {MAX_TABLES_PER_LOCATION[location]} {location} tables are alreayd booked for this time. Please pick a different time or location."
+            f"Sorry! All {MAX_TABLES_PER_LOCATION[location]} {location} tables are already booked for this time. Please pick a different time or location."
           )
   #creates alias for 'amount', so templates and codes can use 'num_people'
   @property
@@ -59,7 +61,14 @@ class TableReservationSlot(models.Model):
   @num_people.setter
   def num_people(self, value):
     self.amount = value
+    
+  @property
+  def available_amount(self):
+    return max(self.max_amount - self.amount, 0)
   
+  def save(self, *args, **kwargs):
+      self.available_amount = max(self.max_amount - self.amount, 0)
+      super().save(*args, **kwargs)
   
   def __str__(self):
      return (

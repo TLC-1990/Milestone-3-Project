@@ -167,9 +167,11 @@ BOOKING_BG = "img/booking_bg.jpg"
 BOOKING_SUCCESS_REDIRECT_URL = "reservation/success/"
 BOOKING_DISABLE_URL = "reservation/disabled/"
 
-DEFAULT_FROM_EMAIL = "lt5sksmq@students.codeinstitute.net"
-EMAIL_HOST = "localhost"
-EMAIL_PORT = "1025"
+#DEFAULT_FROM_EMAIL = "lt5sksmq@students.codeinstitute.net"
+#EMAIL_HOST = "localhost"
+#EMAIL_PORT = "1025"
 
-LOGIN_REDIRECT_URL = 'reservation_form'
+LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL  = 'home'
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

@@ -18,6 +18,14 @@ TIME_SLOTS = [
 ]
 
 class TableReservationForm(forms.ModelForm):
+    customer_name = forms.CharField(
+        label="Your Name",
+        required=True,
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Your full name"
+        })
+    )
     date=forms.DateField(
         widget=DateInput(attrs={
             "class": "form-control",
@@ -53,7 +61,7 @@ class TableReservationForm(forms.ModelForm):
     
     class Meta:
         model = TableReservationSlot
-        fields = ["table", "date", "time", "amount", "notes", "email"]
+        fields = ["customer_name", "table", "date", "time", "amount", "notes", "email"]
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -73,7 +81,7 @@ class TableReservationForm(forms.ModelForm):
         selected_date = self.cleaned_data["date"]
         selected_time = self.cleaned_data["time"]
         instance.time_slot = datetime.strptime(
-            f"{selected_date} {selected_time}", "%Y-%m-%d %H:%M"
+            f"{selected_date} {selected_time}", "%d-%m-%Y %H:%M"
         )
         instance.amount = int(self.cleaned_data["amount"])
         

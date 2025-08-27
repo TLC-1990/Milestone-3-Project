@@ -12,7 +12,7 @@ MAX_TABLES_PER_LOCATION = {
   'inside' : 5,
   'outside' : 5,
 } 
-#creating table name, location of table and number of seats
+
 class Table(models.Model):
   LOCATION_CHOICES = [
     ('inside', 'Inside'),
@@ -25,21 +25,22 @@ class Table(models.Model):
   def __str__(self):
    return f"{self.name} ({self.get_location_display()}, capacity {self.capacity})"
 
-#creating time of reservation, number of guests in booking, availability and table capacity 
+
 class TableReservationSlot(models.Model):
   table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='slots')
   time_slot = models.DateTimeField()
   amount = models.PositiveBigIntegerField(default=1)
   available = models.BooleanField(default=True)
-  max_amount = models.PositiveBigIntegerField()
+  max_amount = models.PositiveBigIntegerField(null=True, blank=True)
   notes = models.TextField(blank=True, null=True)
+  email = models.EmailField(blank=True, null=True)
+  customer_name = models.CharField(max_length=100, blank=False, null=False)
   
   @property
   def available_amount(self):
     return max(self.max_amount - self.amount, 0)
   
   
-#prevents the table from being booked again at the same time
   class Meta:
         unique_together = ('table', 'time_slot')
   def clean(self):
@@ -57,7 +58,7 @@ class TableReservationSlot(models.Model):
           raise ValidationError(
             f"Sorry! All {MAX_TABLES_PER_LOCATION[location]} {location} tables are already booked for this time. Please pick a different time or location."
           )
-  #creates alias for 'amount', so templates and codes can use 'num_people'
+
   @property
   def num_people(self):
     return self.amount

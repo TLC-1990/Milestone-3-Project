@@ -22,7 +22,7 @@
 body {
     font-family: var(--primary-font);
     font-size: 2vw;
-    background: blue;
+    background: #feffcc;
     color: var(--title-color);
     margin: 0;
     padding: 0;
@@ -32,6 +32,7 @@ body {
 main {
     display: flex;
     flex-direction: column;
+    flex: 1;
     align-items: center;
     justify-content: center;
     background: #feffcc;

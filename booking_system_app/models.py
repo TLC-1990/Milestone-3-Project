@@ -24,8 +24,7 @@ class Table(models.Model):
   
   def __str__(self):
    return f"{self.name} ({self.get_location_display()}, capacity {self.capacity})"
-
-
+ 
 class TableReservationSlot(models.Model):
   table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='slots')
   time_slot = models.DateTimeField()
@@ -40,13 +39,11 @@ class TableReservationSlot(models.Model):
   def available_amount(self):
     return max(self.max_amount - self.amount, 0)
   
-  
   class Meta:
         unique_together = ('table', 'time_slot')
   def clean(self):
         super().clean()
 
-        
         location = self.table.location 
         
         existing_bookings = TableReservationSlot.objects.filter(
@@ -63,17 +60,13 @@ class TableReservationSlot(models.Model):
   def num_people(self):
     return self.amount
     
-    
   @num_people.setter
   def num_people(self, value):
     self.amount = value
     
-  
   def __str__(self):
      return (
        f"{self.table.name} ({self.table.get_location_display()},"
        f"capacity {self.table.capacity}) at {self.time_slot} "
        f"for {self.num_people} people"
      )
-
-

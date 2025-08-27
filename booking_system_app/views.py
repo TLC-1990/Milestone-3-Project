@@ -26,7 +26,6 @@ def table_reservations(request):
 def reservation_success(request):
     return render(request, "booking_system_app/reservation_success.html")
 
-
 class TableReservation(SimpleProductReservation):
     base_model = TableReservationSlot
     amount_field = 'quantity'

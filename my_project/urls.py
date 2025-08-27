@@ -32,7 +32,6 @@ urlpatterns = [
     path('register/', include('users.urls')),
     path('summernote/', include('django_summernote.urls')),
     
-    
     path("", lambda request: redirect("home")),
     path("menu/", booking_views.menu, name="menu"),
     

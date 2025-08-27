@@ -26,10 +26,10 @@ __________________
  Project was deployed using GitHub and Visual Studio and Heroku.
 
 ### 1. Live Site
+<img src="development/images/homepage-actual.webp">
+
 https://milestone-3-ede96df867cb.herokuapp.com/home/
 
-<img src=''>
-(https://ui.dev/amiresponsive)
 
 
 ### 2. Responsiveness Screenshots
@@ -233,11 +233,19 @@ Booking
 No significant issues slowing down loading.
 
 ### 2. Bugs Found and Resolved
-1) 
-2) 
-3) 
+1) pk error when trying to open booking page. Resolved by using "<int:pk>/", preventing the system from trying to render ...reservations/reservation. (https://www.geeksforgeeks.org/python/django-url-patterns-python/)
+
+2) Replaced django datepicker, which required a static JS file and caused issues with Bootstrap CMD loading, with Litepicker. (https://www.npmjs.com/package/litepicker)
+
+3) 'available_amount' caused a large bug in the booking form page. Django-booking required this value, although it didn't fit my needs for the project. Amount and num_people were used in its place and "available_amount = forms.IntegerField(widget=forms.HiddenInput(), required=False)" was used to help parse it without it cusing the page to crash or showing up as a necessary area on the booking page by turning it into a hidden form field. 'available_amount' is therefore not saved to the database.
 
 ### 7. Testing
+CSS validation
+<img src="development/images/ms-3-css-validation.webp">
+
+TableReservationForm testing
+<img src="development/images/tablereservationform-testing-commands.webp">
+<img src="development/images/tablereservationform-testing-result.webp">
 
 ## 8. Next Step Features	
 
@@ -247,16 +255,15 @@ Sending the bookings to GoogleSheets or GoogleCalendar for staff at the restaura
 
 ## 9. Coding Sources
 * Code taken from Bootstrap v5.0 and heavily adapted/edited to fit needs of site (NavBar, buttons)
-* Code Institute lessons - 
-* Favicon was used to create the icon in page head.
+* Code Institute lessons - "Love To Blog" python/django code along lessons as well as prior modules.
 * Balsamiq was used to create wireframes
 * Responsive Viewer Chrome add-on was used for responsiveness screenshots
 
-Django for Beginners (version 2.1) - Templates, Class-based views and URLS (Chapter 3), registration, log-in and authentication (Chapter 7)
+Django for Beginners (version 2.1) - Templates, Class-based views and URLS (Chapter 3), registration, log-in and authentication (Chapter 7) (available online - https://elhacker.info/manuales/Lenguajes%20de%20Programacion/Python/Django%20for%20Beginners_%20Build%20Websites%20with%20Django%20(Version%202.1).pdf)
 
 https://docs.djangoproject.com/en/5.2/topics/db/models/  and https://www.w3schools.com/django/django_models.php - creating models in django
 
-https://dj-booking.readthedocs.io/en/latest/ and https://pypi.org/project/dj-booking/ - dj-booking documentation 
+https://dj-booking.readthedocs.io/en/latest/ and https://pypi.org/project/dj-booking/ - dj-booking documentation for setup.
 
 https://stackoverflow.com/questions/64225732/how-to-get-time-slot-in-django-for-doctor-appointment - creating timeslot lists in django
 
@@ -280,6 +287,8 @@ https://stackoverflow.com/questions/14400035/how-to-return-a-static-html-file-as
 
 https://stackoverflow.com/questions/74339432/attempting-to-read-pk-from-url-in-django-but-getting-error-noreversematch-at - url pk error explanation and resolution 
 
+https://sendlayer.com/blog/how-to-send-email-with-django and https://mailtrap.io/blog/django-send-email/ - code and settings to send confirmation emails following booking
+
 
 VSCode Co-Pilot was consulted to assist in migration errors and issues faced with creds.json and github. Assistance sought early on to configure STATIC settings and later to assist with implimentation of Whitenoise and amending of links within templates so they may be readable.
 
@@ -302,26 +311,26 @@ OpenAI consulted to assist with basic html template creation, then heavily adapt
     <tr>
       <th scope="row">hotdog-hero.png</th>
       <td>static/css/images/hotdog-hero.png</td>
-      <td></td>
+      <td>https://images.pexels.com/photos/4518645/pexels-photo-4518645.jpeg?cs=srgb&dl=pexels-polina-tankilevitch-4518645.jpg&fm=jpg&_gl=1*uhos97*_ga*MTEwMDczMDU5NS4xNzU0MzAzNzI3*_ga_8JE65Q40S6*czE3NTQzMDM3MjYkbzEkZzEkdDE3NTQzMDM5NTckajU5JGwwJGgw</td>
       <td>/home</td>
     </tr>
      <tr>
       <th scope="row">pexels-godisable-jacob-226636-718978.webp</th>
       <td>booking_system_app/static/booking_system_app/pexels-godisable-jacob-226636-718978.webp</td>
-      <td></td>
+      <td>https://images.pexels.com/photos/718978/pexels-photo-718978.jpeg?cs=srgb&dl=pexels-godisable-jacob-226636-718978.jpg&fm=jpg&_gl=1*5ndtqf*_ga*MTM0NDkxODYyMy4xNzU0NDA2NDMw*_ga_8JE65Q40S6*czE3NTQ0MDY0MjkkbzEkZzEkdDE3NTQ0MDY0NDckajQyJGwwJGgw</td>
       <td>/menu</td>
     </tr>
     <tr>
       <th scope="row">pexels-olly-788567.webp</th>
       <td>booking_system_app/static/booking_system_app/pexels-olly-788567.webp</td>
-      <td></td>
+      <td>https://images.pexels.com/photos/788567/pexels-photo-788567.jpeg?cs=srgb&dl=pexels-olly-788567.jpg&fm=jpg&_gl=1*1957m2y*_ga*MTM0NDkxODYyMy4xNzU0NDA2NDMw*_ga_8JE65Q40S6*czE3NTQ0MDY0MjkkbzEkZzEkdDE3NTQ0MDY0NDckajQyJGwwJGgw</td>
       <td>/menu</td>
     </tr>
      <tr>
       <th scope="row">pexels-olly-846741.webp</th>
       <td>booking_system_app/static/booking_system_app/pexels-olly-846741.webp</td>
-      <td></td>
-      <td>/manu</td>
+      <td>https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?cs=srgb&dl=pexels-olly-846741.jpg&fm=jpg&_gl=1*5vso3t*_ga*MTM0NDkxODYyMy4xNzU0NDA2NDMw*_ga_8JE65Q40S6*czE3NTQ0MDY0MjkkbzEkZzEkdDE3NTQ0MDY0NDckajQyJGwwJGgw</td>
+      <td>/menu</td>
     </tr>
   </tbody>
 </table>

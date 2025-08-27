@@ -31,6 +31,7 @@ class TableReservationSlot(models.Model):
   time_slot = models.DateTimeField()
   amount = models.PositiveBigIntegerField(default=1)
   available = models.BooleanField(default=True)
+  available_amount = models.PositiveBigIntegerField(default=0)
   max_amount = models.PositiveBigIntegerField()
   notes = models.TextField(blank=True, null=True)
   
@@ -40,6 +41,7 @@ class TableReservationSlot(models.Model):
         unique_together = ('table', 'time_slot')
   def clean(self):
         super().clean()
+
         
         location = self.table.location 
         
@@ -66,8 +68,6 @@ class TableReservationSlot(models.Model):
   def available_amount(self):
     return max(self.max_amount - self.amount, 0)
   
-  def save(self, *args, **kwargs):
-      super().save(*args, **kwargs)
   
   def __str__(self):
      return (

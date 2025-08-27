@@ -1,29 +1,43 @@
 {% extends 'base.html' %}
 {% block title %}Welcome | The Wurst of Times{% endblock %}
 {% block content %}
-  <div class="container mt-4">
-    <h1>Welcome to The Wurst of Times 🌭</h1>
-    <div>
-    <p>Welcome to The Wurst of Times, a restaurant that's as heavy on the puns as it is with the mustard!<br>
-              <hr>
-              We are a team of food enthusiasts, who believe that dining should be an experience filled with laughter
-              and joy.<br>
-              <hr>
-              <strong><u> Our mission </strong></u> is to serve you the best hotdogs in town, presented with a sizzling
-              side of humor and a dollop of fun.
-</p>
+<div class="container-fluid introduction">
+  <div class="row mb-5">
+    <div class="col-12 text-center">
+      <h1 class="mb-4">Welcome to The Wurst of Times 🌭</h1>
+      <p class="mb-3">
+        Welcome to The Wurst of Times, a restaurant that's as heavy on the puns as it is with the mustard!
+      </p>
+      <p class="mb-3">
+        We are a team of food enthusiasts, who believe that dining should be an experience filled with laughter
+        and joy.
+      </p>
+      <p>
+        <strong><u>Our mission</u></strong> is to serve you the best hotdogs in town, presented with a sizzling
+        side of humor and a dollop of fun.
+      </p>
     </div>
-    <div class="col col-md-6">
-            <h3 class="display-5">Why we're best when we're at our wurst!</h3>
-            <p>At The Wurst of Times, we use the finest, imported bratwurst sausages as well as our special recipe
-              creations, which change weekly!<br>
-              <hr>
-              Our chefs are dedicated to crafting the most delicious hotdogs, using only the freshest ingredients and
-              the most creative toppings.<br>
-              <hr>
-              We believe that every bite should be a burst of flavor and every meal should be a celebration.
-            </p>
-          </div>
-      <a href="{% url 'table_reservation' pk=1%}" class="btn btn-primary mt-2">Book your table here!</a>
   </div>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6 text-center">
+      <h3 class="display-5 mb-4">Why we're best when we're at our wurst!</h3>
+      <p class="mb-3">
+        At The Wurst of Times, we use the finest, imported bratwurst sausages as well as our special recipe
+        creations, which change weekly!
+      </p>
+      <p class="mb-3">
+        Our chefs are dedicated to crafting the most delicious hotdogs, using only the freshest ingredients and
+        the most creative toppings.
+      </p>
+      <p>
+        We believe that every bite should be a burst of flavor and every meal should be a celebration.
+      </p>
+    </div>
+  </div>
+</div>
+<a href="{% url 'table_reservation' pk=1%}" class="btn btn-primary mt-2">
+  Book your table here!
+</a>
+</div>
 {% endblock %}

@@ -33,9 +33,8 @@ def delete_dummy_slot(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("booking_system_app", "0007_create_tables"),  # depends on the tables being created
+        ("booking_system_app", "0007_auto_20250826_2139"),
     ]
-
     operations = [
         migrations.RunPython(create_dummy_slot, delete_dummy_slot),
     ]

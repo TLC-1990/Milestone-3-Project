@@ -32,7 +32,7 @@ class TableReservationForm(forms.ModelForm):
     )
     time=forms.ChoiceField(choices=TIME_SLOTS, label="Time slot")
     
-    amount = forms.IntegerFieldField(
+    amount = forms.ChoiceField(
         label="Number of Guests",
         choices=[(i, str(i)) for i in range(1, 6)],
         widget=forms.NumberInput(attrs={"class":"form-control"})

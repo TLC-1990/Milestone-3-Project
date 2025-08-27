@@ -1,0 +1,170 @@
+/*Google Fonts import*/
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Luckiest+Guy&display=swap');
+
+/*General Styles*/
+:root {
+    --primary-font: "Luckiest Guy", cursive;
+    --secondary-font: "Lilita One", cursive;
+    --primary-color: #6d3708;
+    /* Brown */
+    --secondary-color: #800017;
+    /* Burgundy */
+    --background-color: #ffcc00;
+    /* Yellow */
+    --highlight-color: #feffcc;
+    /* Light Yellow */
+    --title-color: #000000;
+    /* Black */
+}
+
+/*global styles*/
+
+body {
+    font-family: var(--primary-font);
+    font-size: 2vw;
+    background: blue;
+    color: var(--title-color);
+    margin: 0;
+    padding: 0;
+    min-width: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #feffcc;
+    min-width: 100%;
+    position: relative;
+    margin: 0;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.brand {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 2rem;
+    color: #ffcc00 !important;
+}
+
+.hero {
+    background: url(../css/images/hotdog-hero.png) center/cover no-repeat;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%;
+}
+
+.hero-text {
+    background-color: rgba(255, 255, 255, 0.7);
+    display: inline-block;
+    border-radius: 10px
+}
+
+h1,
+h2 {
+    text-align: center;
+    text-shadow: var(--highlight-color) 2px 2px 4px;
+    /* lighter shadow for text */
+    padding: 5px;
+    color: var(--text-color);
+    font-family: var(--primary-font);
+    font-size: 4vw;
+}
+
+h3 {
+    font-family: var(--secondary-font);
+    color: var(--secondary-color);
+}
+
+
+/*Navbar styling*/
+#navbar {
+    background: #ffcc00;
+    color: #feffcc;
+    border: var(--highlight-color);
+    font-family: var(--primary-font);
+    font-size: 40px;
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
+    top: 0;
+    margin: 0;
+}
+
+#navbar a:hover {
+    background: #800017;
+    color: #feffcc;
+}
+
+.navbar-name {
+    font-size: 40px;
+    text-shadow: var(--highlight-color) 2px 2px 4px;
+    flex-shrink: 2;
+}
+
+.nav-container {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    margin: 0;
+    width: 100%;
+}
+
+
+.nav-active {
+    color: var(--secondary-color) !important;
+    text-shadow: var(--highlight-color) 2px 2px 4px;
+}
+
+.logo {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.introduction {
+    display: flex;
+    text-align: center;
+    padding: 20px;
+    max-width: 100%;
+    font-family: var(--secondary-font);
+    color: var(--title-color);
+    outline-offset: 10px;
+}
+
+
+.intro-img {
+    min-height: 100%;
+}
+
+/*menu and reviews*/
+.table {
+    border: #800017 5px solid;
+    font-size: 2vw;
+}
+
+.review-image {
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 75%;
+}
+
+.reviews {
+    font-size: 2.5vw;
+}
+
+
+/*footer across pages*/
+footer {
+    min-width: 100%;
+    background-color: var(--background-color) !important;
+    text-align: center;
+    padding: 10px;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    margin: 0;
+}

@@ -35,7 +35,7 @@ class TableReservationForm(forms.ModelForm):
     amount = forms.ChoiceField(
         label="Number of Guests",
         choices=[(i, str(i)) for i in range(1, 6)],
-        widget=forms.NumberInput(attrs={"class":"form-control"})
+        widget=forms.Select(attrs={"class":"form-control"})
     )
     
     notes = forms.CharField(
@@ -49,10 +49,19 @@ class TableReservationForm(forms.ModelForm):
         required=True,
         widget=forms.EmailInput(attrs={"class":"form-control"})
     )
+    available_amount = forms.IntegerField(widget=forms.HiddenInput(), required=False)
+    
     class Meta:
         model = TableReservationSlot
-        fields = ["table", "date", "time", "notes", "email"]
-        
+        fields = ["table", "date", "time", "amount", "notes", "email"]
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance:
+            max_amount = getattr(self.instance, "max_amount", 0) or 0
+            amount = getattr(self.instance, "amount", 0) or 0
+            self.fields["available_amount"].initial = max(max_amount - amount, 0)
+            
     def clean_date(self):
       selected_date = self.cleaned_data['date']
       if selected_date < date.today():
@@ -66,6 +75,7 @@ class TableReservationForm(forms.ModelForm):
         instance.time_slot = datetime.strptime(
             f"{selected_date} {selected_time}", "%Y-%m-%d %H:%M"
         )
+        instance.amount = int(self.cleaned_data["amount"])
         
         if commit:
             instance.save()

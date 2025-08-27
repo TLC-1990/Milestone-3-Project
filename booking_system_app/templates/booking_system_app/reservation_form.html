@@ -1,20 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="container mt-4">
-    <h2>Make a Reservation</h2>
+<div class="container mt-4">
+  <h2>Make a Reservation</h2>
 
-    {% if messages %}
-      {% for message in messages %}
-        <div class="alert alert-info">{{ message }}</div>
-      {% endfor %}
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-info">{{ message }}</div>
+  {% endfor %}
+  {% endif %}
+
+  <form method="POST" novalidate>
+    {% if form.errors %}
+    <div class="alert alert-danger">
+      <strong>Please correct the errors below:</strong>
+      <ul>
+        {% for field in form %}
+        {% if field.errors %}
+        <li><strong>{{ field.label }}:</strong> {{ field.errors|striptags }}</li>
+        {% endif %}
+        {% endfor %}
+        {% if form.non_field_errors %}
+        <li>{{ form.non_field_errors }}</li>
+        {% endif %}
+      </ul>
+    </div>
     {% endif %}
-
-    <form method="POST" novalidate>
-      {% csrf_token %}
-      {{ form.media }}
-      {{ form.as_p }}
-      <button type="submit" class="btn btn-primary mt-2">Book Now</button>
-    </form>
-  </div>
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary mt-2">Book Now</button>
+  </form>
+</div>
 {% endblock %}

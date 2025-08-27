@@ -38,6 +38,7 @@ class TableReservation(SimpleProductReservation):
 def book_table(request):
     if request.method =="POST":
         form = TableReservationForm(request.POST)
+        print("FORM ERRORS:", form.errors)
         if form.is_valid():
             reservation = form.save()
             
@@ -56,6 +57,8 @@ def book_table(request):
                 fail_silently=False,
             )
             return redirect("reservation_success")
+        else: 
+             return render(request, "reservation_form.html", {"form":form})
     else: 
-        form = TableReservationForm()
+         form = TableReservationForm()
     return render(request, "reservation_form.html", {"form": form})

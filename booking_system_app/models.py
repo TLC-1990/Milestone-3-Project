@@ -31,9 +31,12 @@ class TableReservationSlot(models.Model):
   time_slot = models.DateTimeField()
   amount = models.PositiveBigIntegerField(default=1)
   available = models.BooleanField(default=True)
-  available_amount = models.PositiveBigIntegerField(default=0)
   max_amount = models.PositiveBigIntegerField()
   notes = models.TextField(blank=True, null=True)
+  
+  @property
+  def available_amount(self):
+    return max(self.max_amount - self.amount, 0)
   
   
 #prevents the table from being booked again at the same time
@@ -64,10 +67,6 @@ class TableReservationSlot(models.Model):
   def num_people(self, value):
     self.amount = value
     
-  @property
-  def available_amount(self):
-    return max(self.max_amount - self.amount, 0)
-  
   
   def __str__(self):
      return (

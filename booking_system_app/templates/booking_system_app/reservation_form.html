@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <div class="container mt-4">
   <h2>Make a Reservation</h2>
@@ -31,5 +31,16 @@
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary mt-2">Book Now</button>
   </form>
+  <!-- Litepicker -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" />
+  <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+
+  <script>
+    new Litepicker({
+      element: document.getElementById('datepicker'),
+      format: 'DD-MM-YYYY',
+      minDate: new Date()
+    });
+  </script>
 </div>
 {% endblock %}

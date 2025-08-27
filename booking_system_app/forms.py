@@ -1,6 +1,6 @@
 from django import forms
 from .models import TableReservationSlot
-from bootstrap_datepicker_plus.widgets import DatePickerInput
+from django.forms.widgets import DateInput
 from datetime import date, datetime
 from django.core.validators import MaxValueValidator
 
@@ -19,15 +19,12 @@ TIME_SLOTS = [
 
 class TableReservationForm(forms.ModelForm):
     date=forms.DateField(
-        widget=DatePickerInput(
-            options={
-                "format": "DD-MM-YYYY",
-                "minDate":str(date.today()),
-                "showClose": True,
-                "showClear": True,
-                "showTodayButton":True,
+        widget=DateInput(attrs={
+            "class": "form-control",
+            "id": "datepicker"
             }
         ),
+        input_formats=["%d-%m-%Y"],
         label="Reservation Date"
     )
     time=forms.ChoiceField(choices=TIME_SLOTS, label="Time slot")
@@ -47,7 +44,10 @@ class TableReservationForm(forms.ModelForm):
     email = forms.EmailField(
         label="Your Email",
         required=True,
-        widget=forms.EmailInput(attrs={"class":"form-control"})
+        widget=forms.EmailInput(attrs={"class":"form-control",
+                "placeholder": "Your email",
+                "autocomplete":"email"
+                })
     )
     available_amount = forms.IntegerField(widget=forms.HiddenInput(), required=False)
     

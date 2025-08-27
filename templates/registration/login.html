@@ -1,13 +1,13 @@
-<!-- templates/registration/login.html -->
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <h2>Log In</h2>
 <form method="post">
-{% csrf_token %}
-{{ form.as_p }}
-<button type="submit">Log In</button>
-<p>Don't have an account? 
-  <a href="{% url 'signup' %}">Sign up here</a>.
-</p>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Log In</button>
+    <p>Don't have an account?
+        <a href="{% url 'signup' %}">Sign up here</a>.
+    </p>
 </form>
 {% endblock content %}

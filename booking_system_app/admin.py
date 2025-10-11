@@ -1,3 +1,24 @@
 from django.contrib import admin
+from .models import Table, TableReservationSlot
 
-# Register your models here.
+
+@admin.register(Table)
+class TableAdmin(admin.ModelAdmin):
+	list_display = ("name", "location", "capacity")
+	list_filter = ("location",)
+	search_fields = ("name",)
+
+
+@admin.register(TableReservationSlot)
+class TableReservationSlotAdmin(admin.ModelAdmin):
+	list_display = (
+		"customer_name",
+		"table",
+		"time_slot",
+		"amount",
+		"available",
+	)
+	list_filter = ("table", "available")
+	search_fields = ("customer_name", "email", "notes")
+	date_hierarchy = "time_slot"
+	ordering = ("-time_slot",)

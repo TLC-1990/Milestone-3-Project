@@ -31,8 +31,25 @@ __________________
 https://milestone-3-ede96df867cb.herokuapp.com/home/
 
 
-
 ### 2. Responsiveness Screenshots
+Small screens
+<img src="development/images/home-small-screen.webp">
+<img src="development/images/menu-small-screen.webp">
+<img src="development/images/booking-small-screen.webp">
+Medium screens
+<img src="development/images/home-medium-screen.webp">
+<img src="development/images/menu-medium-screen.webp">
+<img src="development/images/booking-medium-screen.webp">
+Large screens
+<img src="development/images/home-large-screen.webp">
+<img src="development/images/menu-large-screen.webp">
+<img src="development/images/booking-large-screen.webp">
+XL screens
+<img src="development/images/home-xl-screen.webp">
+<img src="development/images/menu-xl-screen.webp">
+<img src="development/images/booking-xl-screen.png">
+
+
 ## 2. Purpose
 To create a wedbsite for a restaurant booking and user registration system using Python and Django (including static CSS, JS and HTML templates).  
 

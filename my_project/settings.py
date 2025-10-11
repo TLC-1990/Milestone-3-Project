@@ -32,7 +32,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'http://milestone-3-ede96df867cb.herokuapp.com',
@@ -45,7 +45,6 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     "booking_system_app.apps.BookingSystemAppConfig",
-    "bootstrap_datepicker_plus",
     "restaurant_info",
     "accounts.apps.AccountsConfig",
     "users.apps.UsersConfig",
@@ -57,7 +56,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'django_summernote',
-    'djreservation',
 ]
 
 MIDDLEWARE = [
@@ -69,7 +67,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'djreservation.middleware.ReservationMiddleware',
 ]
 
 ROOT_URLCONF = "my_project.urls"
@@ -149,7 +146,7 @@ STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATIC_DIRS =[
-    BASE_DIR/ "static"
+    BASE_DIR/ "static",
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 

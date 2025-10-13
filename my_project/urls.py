@@ -30,6 +30,7 @@ urlpatterns = [
     path('restaurant_info/', include('restaurant_info.urls')),
     path('register/', include('users.urls')),
     path('summernote/', include('django_summernote.urls')),
+    path('my-bookings/', include('user_bookings.urls')),
     
     path("", lambda request: redirect("home/")),
     path("menu/", booking_views.menu, name="menu"),

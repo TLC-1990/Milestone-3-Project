@@ -28,3 +28,11 @@ def booking_edit(request, pk):
     else:
         form = TableReservationForm(instance=booking)
     return render(request, 'user_bookings/booking_edit.html', {'form': form})
+
+@login_required
+def booking_cancel(request, pk):
+    booking = get_object_or_404(TableReservationSlot, pk=pk, user=request.user)
+    if request.method == 'POST':
+        booking.delete()
+        return redirect('user_booking_list')
+    return render(request, 'user_bookings/booking_cancel_confirmation.html', { 'booking' : booking} )

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2> My Bookings </h2>
+    {% if past_bookings or future_bookings %}
+    <h4> Upcoming Bookings </h4>
+    {% if future_bookings %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Date and Time </th>
+                <th> Table </th>
+                <th> Guests </th>
+                <th> Notes </th>
+                <th> Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in future_bookings %}
+            <tr>
+                <td>{{ booking.time_slot|date:"d M Y H:i" }}</td>
+                <td>{{ booking.table.name }} ({{ booking.table.get_location_display }}) </td>
+                <td> {{ booking.amount }}</td>
+                <td> {{ booking.notes }}</td>
+                <td>
+                    <a href="{% url 'user_booking_edit' booking.pk %}" class="btn btn-sm btn-primary"> Edit </a>
+                    <a href="{% url 'user_booking_cancel' booking.pk %}" class="btn btn-sm btn-danger"
+                        onclick="return confirm('Are you sure you want to cancel this booking?');"> Cancel </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p> No Upcoming Bookings</p>
+    {% endif %}
+
+    <h4 class="mt-4"> Past Bookings </h4>
+    {% if past_bookings %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Date and Time </th>
+                <th> Table </th>
+                <th> Guests </th>
+                <th> Notes </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in past_bookings %}
+            <tr>
+                <td>{{ booking.time_slot|date:"d M Y H:i" }}</td>
+                <td>{{ booking.table.name }} ({{ booking.table.get_location_display }}) </td>
+                <td> {{ booking.amount }}</td>
+                <td> {{ booking.notes }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p> No Past Bookings </p>
+    {% endif %}
+    {% else %}
+    <p> You have no bookings yet! </p>
+    {% endif %}
+</div>
+{% endblock %}

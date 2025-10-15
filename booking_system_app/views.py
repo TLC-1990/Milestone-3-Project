@@ -32,7 +32,7 @@ def reservation_success(request):
     return render(request, "booking_system_app/reservation_success.html")
 
 
-@login_required(login_url='login')
+@login_required(login_url='account_login')
 def book_table(request, pk=None):
     """Handle booking form; optional `pk` binds the form to a TableReservationSlot instance."""
     slot = None

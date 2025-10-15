@@ -44,7 +44,7 @@ def book_table(request, pk=None):
         print("FORM ERRORS:", form.errors)
         if form.is_valid():
             reservation = form.save(commit=False)
-            reservation.user = request.user
+            reservation.email = request.user.email
             reservation.save()
 
             # send confirmation email (do not block on failure)

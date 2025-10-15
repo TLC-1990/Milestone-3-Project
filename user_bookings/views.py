@@ -9,7 +9,7 @@ from django.utils import timezone
 @login_required
 def booking_list(request):
     now = timezone.now()
-    bookings = TableReservationSlot.objects.filter(user=request.user)
+    bookings = TableReservationSlot.objects.filter(email=request.user.email)
     past_bookings = bookings.filter(time_slot__lt=now).order_by('time_slot')
     future_bookings = bookings.filter(time_slot__gte=now).order_by('time_slot')
     return render(request, 'user_bookings/booking_list.html', {
@@ -19,7 +19,7 @@ def booking_list(request):
 
 @login_required
 def booking_edit(request, pk):
-    booking = get_object_or_404(TableReservationSlot, pk=pk, user=request.user)
+    booking = get_object_or_404(TableReservationSlot, pk=pk, email=request.user.email)
     if request.method=='POST':
         form = TableReservationForm(request.POST, instance=booking)
         if form.is_valid():
@@ -31,7 +31,7 @@ def booking_edit(request, pk):
 
 @login_required
 def booking_cancel(request, pk):
-    booking = get_object_or_404(TableReservationSlot, pk=pk, user=request.user)
+    booking = get_object_or_404(TableReservationSlot, pk=pk, email=request.user.email)
     if request.method == 'POST':
         booking.delete()
         return redirect('user_booking_list')

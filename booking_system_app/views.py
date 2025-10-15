@@ -8,29 +8,20 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.conf import settings
 
-
-# Create your views here.
-
-
 def reservation_form(request):
     return render(request, "booking_system_app/reservation_form.html")
-
 
 def home(request):
     return render(request, "booking_system_app/home.html")
 
-
 def menu(request):
     return render(request, "booking_system_app/menu.html")
-
 
 def table_reservations(request):
     return render(request, "booking_system_app/reservation_form.html")
 
-
 def reservation_success(request):
     return render(request, "booking_system_app/reservation_success.html")
-
 
 @login_required(login_url='account_login')
 def book_table(request, pk=None):
@@ -47,7 +38,6 @@ def book_table(request, pk=None):
             reservation.email = request.user.email
             reservation.save()
 
-            # send confirmation email (do not block on failure)
             try:
                 send_mail(
                     subject="Booking confirmation from The Wurst of Times",
@@ -67,7 +57,6 @@ def book_table(request, pk=None):
                 print("Warning: failed to send booking confirmation email")
 
             return redirect("reservation_success")
-        # else: fall through and re-render form with errors
     else:
         form = TableReservationForm(instance=slot)
 

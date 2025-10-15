@@ -6,7 +6,7 @@
     <h2> Edit Booking </h2>
     <form method="POST">
         {% csrf_token %}
-        {{ form.as p }}
+        {{ form.as_p }}
         <button type="submit" class="btn btn-primary mt-2">
             Save Changes
         </button>

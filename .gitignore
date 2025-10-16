@@ -1,3 +1,4 @@
 env.py
 .venv/
 creds.json
+db.sqlite3

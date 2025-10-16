@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     "booking_system_app.apps.BookingSystemAppConfig",
     "restaurant_info",
     "accounts.apps.AccountsConfig",
-    "users.apps.UsersConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

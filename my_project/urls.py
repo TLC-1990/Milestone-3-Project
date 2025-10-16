@@ -26,7 +26,6 @@ from accounts import views as CustomLoginView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('restaurant_info/', include('restaurant_info.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('my-bookings/', include('user_bookings.urls')),
     

@@ -42,6 +42,7 @@ class TableReservationSlot(models.Model):
   
   class Meta:
         unique_together = ('table', 'time_slot')
+        
   def clean(self):
         super().clean()
 
@@ -49,7 +50,7 @@ class TableReservationSlot(models.Model):
         
         existing_bookings = TableReservationSlot.objects.filter(
           table__location=location,
-          time_slot=self.time_slot
+          time_slot=self.time_slot,
         ).exclude(pk=self.pk).count()
         
         if existing_bookings >= MAX_TABLES_PER_LOCATION[location]:

@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th> Date and Time </th>
+                <th> Date & Time </th>
                 <th> Table </th>
                 <th> Guests </th>
                 <th> Notes </th>
@@ -18,7 +18,7 @@
         <tbody>
             {% for booking in future_bookings %}
             <tr>
-                <td>{{ booking.time_slot|date:"d M Y H:i" }}</td>
+                <td>{{ booking.date|date:"d M Y" }} {{ booking.time_slot|time:"H:i" }}</td>
                 <td>{{ booking.table.name }} ({{ booking.table.get_location_display }}) </td>
                 <td> {{ booking.amount }}</td>
                 <td> {{ booking.notes }}</td>
@@ -49,7 +49,7 @@
         <tbody>
             {% for booking in past_bookings %}
             <tr>
-                <td>{{ booking.time_slot|date:"d M Y H:i" }}</td>
+                <td>{{ booking.date|date:"d M Y" }} {{ booking.time_slot|time:"H:i" }}</td>
                 <td>{{ booking.table.name }} ({{ booking.table.get_location_display }}) </td>
                 <td> {{ booking.amount }}</td>
                 <td> {{ booking.notes }}</td>

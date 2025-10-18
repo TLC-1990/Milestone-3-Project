@@ -58,7 +58,11 @@ def book_table(request, pk=None):
 
             return redirect("reservation_success")
     else:
-        form = TableReservationForm(instance=slot)
-
+        if slot is not None:
+            form = TableReservationForm(instance=slot)
+        else:
+            form = TableReservationForm(initial={
+                "email": request.user.email,
+            })
     return render(request, "booking_system_app/reservation_form.html", {"form": form})
 

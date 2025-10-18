@@ -30,7 +30,8 @@ class TableReservationForm(forms.ModelForm):
         widget=DateInput(attrs={
             "class": "form-control",
             "id": "datepicker"
-            }
+            },
+            format="%d-%m-%Y"
         ),
         input_formats=["%d-%m-%Y"],
         label="Reservation Date"
@@ -65,11 +66,10 @@ class TableReservationForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.instance:
-            max_amount = getattr(self.instance, "max_amount", 0) or 0
-            amount = getattr(self.instance, "amount", 0) or 0
-            self.fields["available_amount"].initial = max(max_amount - amount, 0)
-            
+        if self.instance and self.instance.pk:
+            if self.instance.time_slot:
+                self.fields["time"].initial = self.instance.time_slot.strftime("%H:%M") 
+                        
     def clean_date(self):
       selected_date = self.cleaned_data['date']
       if selected_date < date.today():
@@ -84,6 +84,8 @@ class TableReservationForm(forms.ModelForm):
         instance.date = selected_date
         instance.amount = int(self.cleaned_data["amount"])
         
+        
+        instance.full_clean()
         if commit:
             instance.save()
         return instance

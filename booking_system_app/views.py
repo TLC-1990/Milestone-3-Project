@@ -44,7 +44,7 @@ def book_table(request, pk=None):
                     message=(
                         f"Hello {reservation.customer_name},\n\nYour reservation at The Wurst of Times has been confirmed:\n\n"
                         f"Table: {reservation.table.name} ({reservation.table.get_location_display()})\n"
-                        f"When: {reservation.time_slot.strftime('%d-%m-%Y %H:%M')}\n"
+                        f"When: {reservation.date.strftime('%d-%m-%Y') + " " + reservation.time_slot.strftime('%H:%M')}\n"
                         f"Number of diners: {reservation.amount}\n"
                         f"Notes: {reservation.notes if reservation.notes else 'None'}\n\n"
                         f"We look forward to welcoming you!"

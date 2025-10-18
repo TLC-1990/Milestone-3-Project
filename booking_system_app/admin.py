@@ -15,10 +15,11 @@ class TableReservationSlotAdmin(admin.ModelAdmin):
 		"customer_name",
 		"table",
 		"time_slot",
+        "date",
 		"amount",
 		"available",
 	)
 	list_filter = ("table", "available")
 	search_fields = ("customer_name", "email", "notes")
-	date_hierarchy = "time_slot"
-	ordering = ("-time_slot",)
+	date_hierarchy = "date"
+	ordering = ("-date",)

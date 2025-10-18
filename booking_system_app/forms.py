@@ -80,8 +80,8 @@ class TableReservationForm(forms.ModelForm):
         instance = super().save(commit=False)
         selected_date = self.cleaned_data["date"]
         selected_time = self.cleaned_data["time"]
-        date_str = selected_date.strftime("%d-%m-%Y")
-        instance.time_slot = datetime.strptime(f"{date_str} {selected_time}", "%d-%m-%Y %H:%M")
+        instance.time_slot = datetime.strptime(selected_time, "%H:%M").time()
+        instance.date = selected_date
         instance.amount = int(self.cleaned_data["amount"])
         
         if commit:

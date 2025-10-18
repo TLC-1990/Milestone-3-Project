@@ -27,7 +27,8 @@ class Table(models.Model):
  
 class TableReservationSlot(models.Model):
   table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='slots')
-  time_slot = models.DateTimeField()
+  time_slot = models.TimeField()
+  date = models.DateField(null=True, blank=True)
   amount = models.PositiveBigIntegerField(default=1)
   available = models.BooleanField(default=True)
   max_amount = models.PositiveBigIntegerField(null=True, blank=True)
@@ -67,6 +68,6 @@ class TableReservationSlot(models.Model):
   def __str__(self):
      return (
        f"{self.table.name} ({self.table.get_location_display()},"
-       f"capacity {self.table.capacity}) at {self.time_slot} "
+       f"capacity {self.table.capacity}) at {self.time_slot} on {self.date} "
        f"for {self.num_people} people"
      )

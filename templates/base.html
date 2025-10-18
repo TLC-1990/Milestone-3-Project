@@ -50,7 +50,7 @@
                             <a class="nav-link" href="{% url 'menu' %}">Menu and Reviews</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'table_reservation' pk=1 %}">Book your table!</a>
+                            <a class="nav-link" href="{% url 'book_table' %}">Book your table!</a>
                         </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
@@ -83,7 +83,7 @@
         <div class="hero-text">
             <h1>The Wurst Hotdogs in Town</h1>
             <p class="lead">Gourmet dogs, craft beer, and a side of bad puns.</p>
-            <a href="{% url 'table_reservation' pk=1 %}" class="btn btn-primary btn-reserve mt-3">Book Your Table!</a>
+            <a href="{% url 'book_table' %}" class="btn btn-primary btn-reserve mt-3">Book Your Table!</a>
         </div>
     </section>
     {% endif %}

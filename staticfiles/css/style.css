@@ -20,7 +20,7 @@
 /*global styles*/
 
 body {
-    font-family: var(--primary-font);
+    font-family: var(--secondary-font);
     font-size: 2vw;
     background: #feffcc;
     color: var(--title-color);
@@ -63,14 +63,15 @@ main {
 
 .hero-text {
     background-color: rgba(255, 255, 255, 0.7);
-    font-family: var(--primary-font);
     display: inline-block;
-    border-radius: 10px
+    border-radius: 10px;
+    padding: 10px;
 }
 
-.btn-primary {
-    margin-bottom: 20px;
-    padding: 10px;
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+    padding: 20px;
 }
 
 h1,
@@ -80,12 +81,12 @@ h2 {
     /* lighter shadow for text */
     padding: 5px;
     color: var(--text-color);
-    font-family: var(--primary-font);
+    font-family: var(--secondary-font);
     font-size: 4vw;
 }
 
 h3 {
-    font-family: var(--primary-font);
+    font-family: var(--secondary-font);
     color: var(--secondary-color);
 }
 
@@ -95,13 +96,16 @@ h3 {
     background: #ffcc00;
     color: #feffcc;
     border: var(--highlight-color);
-    font-family: var(--primary-font);
-    font-size: 40px;
     display: flex;
     justify-content: space-between;
     min-width: 100%;
     top: 0;
     margin: 0;
+}
+
+.nav-link {
+    font-family: var(--primary-font);
+    font-size: 20px;
 }
 
 #navbar a:hover {
@@ -138,7 +142,7 @@ h3 {
     text-align: center;
     padding: 20px;
     max-width: 100%;
-    font-family: var(--primary-font);
+    font-family: var(--secondary-font);
     color: var(--title-color);
     outline-offset: 10px;
 }

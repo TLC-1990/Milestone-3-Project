@@ -162,7 +162,7 @@ BOOKING_SUCCESS_REDIRECT_URL = "reservation/success/"
 BOOKING_DISABLE_URL = "reservation/disabled/"
 
 
-if 'DVELOPMENT' in os.environ:
+if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'thewurstoftimes@example.com'
 
@@ -174,5 +174,3 @@ else:
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
-
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

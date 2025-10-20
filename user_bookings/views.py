@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.exceptions import ValidationError
 from django.contrib.auth.decorators import login_required
 from booking_system_app.models import TableReservationSlot
 from booking_system_app.forms import TableReservationForm
@@ -31,8 +32,11 @@ def booking_edit(request, pk):
     if request.method=='POST':
         form = TableReservationForm(request.POST, instance=booking)
         if form.is_valid():
-            form.save()
-            return redirect('user_booking_list')
+            try:
+                form.save()
+                return redirect('user_booking_list')
+            except ValidationError as e:
+                form.add_error(None, e)
     else:
         form = TableReservationForm(instance=booking)
     return render(request, 'user_bookings/booking_edit.html', {'form': form})

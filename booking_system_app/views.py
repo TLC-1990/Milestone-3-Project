@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from django.contrib import messages
 from django.utils import timezone
+from django.core.mail import send_mail
 from .models import TableReservationSlot
 from .forms import TableReservationForm
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
 from django.conf import settings
 
 def reservation_form(request):
@@ -37,25 +36,7 @@ def book_table(request, pk=None):
             reservation = form.save(commit=False)
             reservation.email = request.user.email
             reservation.save()
-
-            try:
-                send_mail(
-                    subject="Booking confirmation from The Wurst of Times",
-                    message=(
-                        f"Hello {reservation.customer_name},\n\nYour reservation at The Wurst of Times has been confirmed:\n\n"
-                        f"Table: {reservation.table.name} ({reservation.table.get_location_display()})\n"
-                        f"When: {reservation.date.strftime('%d-%m-%Y') + " " + reservation.time_slot.strftime('%H:%M')}\n"
-                        f"Number of diners: {reservation.amount}\n"
-                        f"Notes: {reservation.notes if reservation.notes else 'None'}\n\n"
-                        f"We look forward to welcoming you!"
-                    ),
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=[request.user.email],
-                    fail_silently=False,
-                )
-            except Exception:
-                print("Warning: failed to send booking confirmation email")
-
+            
             return redirect("reservation_success")
     else:
         if slot is not None:

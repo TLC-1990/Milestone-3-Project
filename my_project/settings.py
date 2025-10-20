@@ -14,10 +14,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True 
 
 ALLOWED_HOSTS = [
@@ -36,7 +35,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'django_summernote',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -88,10 +86,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "my_project.wsgi.application"
 
 DATABASES = {
-  "default": {
-     "ENGINE": "django.db.backends.sqlite3",
-     "NAME": BASE_DIR / "db.sqlite3",
-}
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 if 'test' in sys.argv:

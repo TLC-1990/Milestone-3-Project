@@ -21,7 +21,7 @@
 
 body {
     font-family: var(--secondary-font);
-    font-size: 2vw;
+    font-size: 1.2rem;
     background: #feffcc;
     color: var(--title-color);
     margin: 0;
@@ -90,6 +90,18 @@ h3 {
     color: var(--secondary-color);
 }
 
+button,
+.btn {
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+button:hover,
+.btn:hover {
+    background: var(--secondary-color);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
 
 /*Navbar styling*/
 #navbar {
@@ -159,9 +171,14 @@ h3 {
 }
 
 .review-image {
-    max-width: 80px;
-    max-height: 80px;
-    border-radius: 75%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--secondary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+    display: block;
+    margin: 0 auto;
 }
 
 .reviews {

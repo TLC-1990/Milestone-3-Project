@@ -74,7 +74,7 @@
                         <li class="nav-item">
                             <form action="{% url 'account_logout' %}" method="post" class="d-inline">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-link nav-link p-0">Logout</button>
+                                <button type="submit" class="nav-link">Logout</button>
                             </form>
                         </li>
                         {% else %}

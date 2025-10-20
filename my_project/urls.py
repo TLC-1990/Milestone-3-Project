@@ -9,7 +9,6 @@ from booking_system_app import views as booking_views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('summernote/', include('django_summernote.urls')),
     path('my-bookings/', include('user_bookings.urls')),
     
     path("", lambda request: redirect("home/")),

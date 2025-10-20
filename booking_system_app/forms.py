@@ -1,5 +1,5 @@
 from django import forms
-from .models import TableReservationSlot
+from .models import Table, TableReservationSlot
 from django.forms.widgets import DateInput
 from datetime import date, datetime
 from django.core.validators import MaxValueValidator
@@ -26,6 +26,14 @@ class TableReservationForm(forms.ModelForm):
             "placeholder": "Your full name"
         })
     )
+    
+    table = forms.ModelChoiceField(
+        queryset=Table.objects.all(),
+        required=True,
+        label="Select Table",
+        widget=forms.Select(attrs={"class": "form-control"})
+    )
+    
     date=forms.DateField(
         widget=DateInput(attrs={
             "class": "form-control",

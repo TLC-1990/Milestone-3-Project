@@ -41,7 +41,7 @@ class TableReservationSlot(models.Model):
     return max(self.max_amount - self.amount, 0)
   
   class Meta:
-        unique_together = ('table', 'time_slot')
+        unique_together = ('table', 'time_slot', 'date')
         
   def clean(self):
         super().clean()

@@ -62,7 +62,7 @@ main {
 }
 
 .hero-text {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
     display: inline-block;
     border-radius: 10px;
     padding: 10px;
@@ -72,6 +72,8 @@ main {
     font-size: 1.25rem;
     font-weight: 300;
     padding: 20px;
+    font-family: var(--secondary-font);
+
 }
 
 h1,
@@ -90,18 +92,6 @@ h3 {
     color: var(--secondary-color);
 }
 
-button,
-.btn {
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-}
-
-button:hover,
-.btn:hover {
-    background: var(--secondary-color);
-    color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
 
 /*Navbar styling*/
 #navbar {
@@ -113,6 +103,10 @@ button:hover,
     min-width: 100%;
     top: 0;
     margin: 0;
+}
+
+.navbar-brand {
+    font-family: var(--primary-font);
 }
 
 .nav-link {
@@ -159,6 +153,10 @@ button:hover,
     outline-offset: 10px;
 }
 
+.intro-header {
+    font-family: var(--primary-font);
+
+}
 
 .intro-img {
     min-height: 100%;
@@ -167,23 +165,23 @@ button:hover,
 /*menu and reviews*/
 .table {
     border: #800017 5px solid;
-    font-size: 1rem;
+    font-size: 2vw;
+    font-family: var(--secondary-font);
+}
+
+.table td {
+    font-size: 1rem !important;
 }
 
 .review-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid var(--secondary-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
-    display: block;
-    margin: 0 auto;
-    overflow: hidden;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 75%;
 }
 
 .reviews {
-    font-size: 1.2rem;
+    font-size: 2.5vw;
+    font-family: var(--secondary-font);
 }
 
 

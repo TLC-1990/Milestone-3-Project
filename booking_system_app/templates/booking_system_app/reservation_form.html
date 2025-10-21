@@ -12,6 +12,13 @@
   {% endif %}
 
   <form method="POST" novalidate>
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger">
+      {% for error in form.non_field_errors %}
+      <strong>{{ error }}</strong>
+      {% endfor %}
+    </div>
+    {% endif %}
     {% if form.errors %}
     <div class="alert alert-danger">
       <strong>Please correct the errors below:</strong>
@@ -21,13 +28,6 @@
         <li><strong>{{ field.label }}:</strong> {{ field.errors|striptags }}</li>
         {% endif %}
         {% endfor %}
-        {% if form.non_field_errors %}
-        <div class="alert alert-danger">
-          {% for error in form.non_field_errors %}
-          <strong>{{ error }}</strong>
-          {% endfor %}
-        </div>
-        {% endif %}
       </ul>
     </div>
     {% endif %}

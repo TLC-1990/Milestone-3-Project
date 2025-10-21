@@ -38,6 +38,7 @@ def book_table(request, pk=None):
                try:
                    reservation = form.save(commit=False)
                    reservation.email = request.user.email
+                   reservation.full_clean()
                    reservation.save()
                    return redirect("reservation_success")
                except (ValidationError, IntegrityError) as e:

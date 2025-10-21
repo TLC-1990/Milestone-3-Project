@@ -105,6 +105,10 @@ h3 {
     margin: 0;
 }
 
+.navbar-brand {
+    font-family: var(--primary-font);
+}
+
 .nav-link {
     font-family: var(--primary-font);
     font-size: 20px;
@@ -149,6 +153,10 @@ h3 {
     outline-offset: 10px;
 }
 
+.intro-header {
+    font-family: var(--primary-font);
+
+}
 
 .intro-img {
     min-height: 100%;
@@ -158,6 +166,11 @@ h3 {
 .table {
     border: #800017 5px solid;
     font-size: 2vw;
+    font-family: var(--secondary-font);
+}
+
+.table td {
+    font-size: 1rem !important;
 }
 
 .review-image {
@@ -167,7 +180,8 @@ h3 {
 }
 
 .reviews {
-    font-size: 2.5vw;
+    font-size: 1.2rem;
+    font-family: var(--secondary-font);
 }
 
 

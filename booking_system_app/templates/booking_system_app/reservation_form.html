@@ -22,7 +22,11 @@
         {% endif %}
         {% endfor %}
         {% if form.non_field_errors %}
-        <li>{{ form.non_field_errors }}</li>
+        <div class="alert alert-danger">
+          {% for error in form.non_field_errors %}
+          <strong>{{ error }}</strong>
+          {% endfor %}
+        </div>
         {% endif %}
       </ul>
     </div>
@@ -44,18 +48,6 @@
     });
   </script>
 </div>
-{% if form.errors %}
-<ul>
-  {% for field in form %}
-  {% for error in field.errors %}
-  <li>{{ field.label }}: {{ error }}</li>
-  {% endfor %}
-  {% endfor %}
-  {% for error in form.non_field_errors %}
-  <li>{{ error }}</li>
-  {% endfor %}
-</ul>
-{% endif %}
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll('.alert').forEach(function (el) {

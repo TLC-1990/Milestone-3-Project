@@ -167,22 +167,23 @@ button:hover,
 /*menu and reviews*/
 .table {
     border: #800017 5px solid;
-    font-size: 2vw;
+    font-size: 1rem;
 }
 
 .review-image {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 50%;
     border: 3px solid var(--secondary-color);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
     display: block;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 .reviews {
-    font-size: 2.5vw;
+    font-size: 1.2rem;
 }
 
 

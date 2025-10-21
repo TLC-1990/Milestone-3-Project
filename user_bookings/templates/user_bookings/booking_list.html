@@ -59,9 +59,15 @@
     </table>
     {% else %}
     <p> No Past Bookings </p>
+    <a href="{% url 'book_table' %}" class="btn btn-primary mt-2">
+        Book your table here!
+    </a>
     {% endif %}
     {% else %}
     <p> You have no bookings yet! </p>
+    <a href="{% url 'book_table' %}" class="btn btn-primary mt-2">
+        Book your table here!
+    </a>
     {% endif %}
 </div>
 {% endblock %}

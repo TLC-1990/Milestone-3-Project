@@ -1,3 +1,5 @@
+from django.core.exceptions import ValidationError
+from django.db import IntegrityError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.utils import timezone
@@ -31,19 +33,19 @@ def book_table(request, pk=None):
 
     if request.method == "POST":
         form = TableReservationForm(request.POST, instance=slot)
-        print("FORM ERRORS:", form.errors)
         if form.is_valid():
-            reservation = form.save(commit=False)
-            reservation.email = request.user.email
-            reservation.save()
-            
-            return redirect("reservation_success")
+            if form.is_valid():
+               try:
+                   reservation = form.save(commit=False)
+                   reservation.email = request.user.email
+                   reservation.save()
+                   return redirect("reservation_success")
+               except (ValidationError, IntegrityError) as e:
+                   form.add_error(None, str(e))
     else:
         if slot is not None:
             form = TableReservationForm(instance=slot)
         else:
-            form = TableReservationForm(initial={
-                "email": request.user.email,
-            })
-    return render(request, "booking_system_app/reservation_form.html", {"form": form})
+            form = TableReservationForm(initial={"email": request.user.email})
 
+    return render(request, "booking_system_app/reservation_form.html", {"form": form})

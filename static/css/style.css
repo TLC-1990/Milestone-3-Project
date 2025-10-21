@@ -21,7 +21,7 @@
 
 body {
     font-family: var(--secondary-font);
-    font-size: 2vw;
+    font-size: 1.2rem;
     background: #feffcc;
     color: var(--title-color);
     margin: 0;
@@ -62,7 +62,7 @@ main {
 }
 
 .hero-text {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
     display: inline-block;
     border-radius: 10px;
     padding: 10px;
@@ -72,6 +72,8 @@ main {
     font-size: 1.25rem;
     font-weight: 300;
     padding: 20px;
+    font-family: var(--secondary-font);
+
 }
 
 h1,

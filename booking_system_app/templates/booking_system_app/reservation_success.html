@@ -2,7 +2,13 @@
 {% load static %}
 {% block content %}
 <div class="container mt-4">
-  <h2>Success! We look forward to seeing you soon!</h2>
-  <a href="{% url 'home' %}" class="btn btn-primary mt-2"> Return to homepage </a>
+  <h2>Well, hot dawwg!
+    <br>🎉 🤠 🌭
+    <br>Your booking was successful and
+    <br> we look forward to seeing you soon!</h2>
+  <div class="text-center mt-4">
+    <a href="{% url 'user_booking_list' %}" class="btn btn-primary mt-2"> View your bookings </a>
+    <a href="{% url 'home' %}" class="btn btn-primary mt-2"> Return to homepage </a>
+  </div>
 </div>
 {% endblock %}

@@ -92,6 +92,14 @@ h3 {
     color: var(--secondary-color);
 }
 
+h4 {
+    font-family: var(--secondary-font);
+}
+
+p {
+    font-family: var(--secondary-font);
+}
+
 
 /*Navbar styling*/
 #navbar {

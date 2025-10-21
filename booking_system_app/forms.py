@@ -1,9 +1,8 @@
+
 from django import forms
 from .models import Table, TableReservationSlot
 from django.forms.widgets import DateInput
 from datetime import date, datetime
-from django.core.validators import MaxValueValidator
-
 
 TIME_SLOTS = [
     ("12:00", "12:00 PM"),
@@ -26,65 +25,65 @@ class TableReservationForm(forms.ModelForm):
             "placeholder": "Your full name"
         })
     )
-    
+
     table = forms.ModelChoiceField(
-    queryset=Table.objects.all(),
-    required=True,
-    empty_label=None,
-    label="Select Table",
-    widget=forms.Select(attrs={"class": "form-control"})
-   )
-    
-    date=forms.DateField(
+        queryset=Table.objects.all(),
+        required=True,
+        empty_label=None,
+        label="Select Table",
+        widget=forms.Select(attrs={"class": "form-control"})
+    )
+
+    date = forms.DateField(
         widget=DateInput(attrs={
             "class": "form-control",
             "id": "datepicker"
-            },
-            format="%d-%m-%Y"
-        ),
+        }, format="%d-%m-%Y"),
         input_formats=["%d-%m-%Y"],
         label="Reservation Date"
     )
-    time=forms.ChoiceField(choices=TIME_SLOTS, label="Time slot")
-    
+
+    time = forms.ChoiceField(choices=TIME_SLOTS, label="Time slot")
+
     amount = forms.ChoiceField(
         label="Number of Guests",
         choices=[(i, str(i)) for i in range(1, 6)],
-        widget=forms.Select(attrs={"class":"form-control"})
+        widget=forms.Select(attrs={"class": "form-control"})
     )
-    
+
     notes = forms.CharField(
-        label="Additonal Notes (allergies, special occasions or requests)",
+        label="Additional Notes (allergies, special occasions or requests)",
         required=False,
-        widget=forms.Textarea(attrs={"rows":3, "class":"form-control"})
+        widget=forms.Textarea(attrs={"rows": 3, "class": "form-control"})
     )
-    
+
     email = forms.EmailField(
         label="Your Email",
         required=True,
-        widget=forms.EmailInput(attrs={"class":"form-control",
-                "placeholder": "Your email",
-                "autocomplete":"email"
-                })
+        widget=forms.EmailInput(attrs={
+            "class": "form-control",
+            "placeholder": "Your email",
+            "autocomplete": "email"
+        })
     )
+
     available_amount = forms.IntegerField(widget=forms.HiddenInput(), required=False)
-    
+
     class Meta:
         model = TableReservationSlot
         fields = ["customer_name", "table", "date", "time", "amount", "notes", "email"]
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.instance and self.instance.pk:
-            if self.instance.time_slot:
-                self.fields["time"].initial = self.instance.time_slot.strftime("%H:%M") 
-                        
+        if self.instance and self.instance.pk and self.instance.time_slot:
+            self.fields["time"].initial = self.instance.time_slot.strftime("%H:%M")
+
     def clean_date(self):
-      selected_date = self.cleaned_data['date']
-      if selected_date < date.today():
-        raise forms.ValidationError("You cannot book a table in the past!")
-      return selected_date
-    
+        selected_date = self.cleaned_data['date']
+        if selected_date < date.today():
+            raise forms.ValidationError("You cannot book a table in the past!")
+        return selected_date
+
     def save(self, commit=True):
         instance = super().save(commit=False)
         selected_date = self.cleaned_data["date"]
@@ -92,8 +91,6 @@ class TableReservationForm(forms.ModelForm):
         instance.time_slot = datetime.strptime(selected_time, "%H:%M").time()
         instance.date = selected_date
         instance.amount = int(self.cleaned_data["amount"])
-        
-        
         instance.full_clean()
         if commit:
             instance.save()

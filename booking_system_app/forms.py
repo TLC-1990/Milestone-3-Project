@@ -28,11 +28,12 @@ class TableReservationForm(forms.ModelForm):
     )
     
     table = forms.ModelChoiceField(
-        queryset=Table.objects.all(),
-        required=True,
-        label="Select Table",
-        widget=forms.Select(attrs={"class": "form-control"})
-    )
+    queryset=Table.objects.all(),
+    required=True,
+    empty_label=None,
+    label="Select Table",
+    widget=forms.Select(attrs={"class": "form-control"})
+   )
     
     date=forms.DateField(
         widget=DateInput(attrs={

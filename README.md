@@ -20,11 +20,11 @@
 ### 1. [Live Site Link](#live-site-link)
 ### 2. [Technologies and Platforms Used](#technologies-and-platforms-used)
 ### 3. [Deployment Steps](#deployment-steps)
-### 4. [Responsiveness Screenshots](#responsiveness-screenshots)
 ## 6. [Testing](#testing)
 ### 1. [Manual Testing](#manual-testing)
 ### 2. [Coding Validation](#coding-validation)
 ### 3. [Bugs Found and Resolved](#bugs-found-and-resolved)
+### 4. [Responsiveness Screenshots](#responsiveness-screenshots)
 ## 7. [Security Considerations](#security-considerations)
 ## 8. [Next Step Features](#next-step-features)
 ## 9. [Coding Sources](#coding-sources)
@@ -58,7 +58,7 @@ a particular time and date.
 ### Site owner's goal:
 * The site owner would like the ability to take online bookings for their eatery.
 
-## User stories
+## 2. User stories
 * As a user, I want to be able to find out information about the restaurant, including location and menus.
 * As a user, I want the website to be simply presented and easily navigable. 
 * As a user, I want to be able to register and log-in to the booking system.
@@ -162,7 +162,7 @@ The following diagram represents the database structure for the restaurant booki
 * Each TableReservationSlot refers to one Table.
 
 
-## 4. UI
+## 4. UI Design
 ### Surface
 My aim was to keep the font readable but to have some levity to match the style of restaurant. The lettering is clear against the light background. The idea was to invoke the idea of ketchup and mustard for the user since the restaurant serves hotdogs. 
 
@@ -185,7 +185,6 @@ Secondary font - "Lilita One", cursive
 
 The two fonts had similarities in style and were both bold and readable. Lilita One was a better choice for the booking form and for the menus as it included a lowercase font. 
 
-## 5. UI Design
 
 ## Initital design wireframes created using Balsamiq
 
@@ -197,7 +196,7 @@ Menu and Reviews (/menu)
 
 Booking (/reservations)
 <img src="development/images/booking-page.webp">
-
+---
 ## 5. Deployment
 
 ## Installation & Usage
@@ -222,7 +221,7 @@ Booking (/reservations)
 
 ---
 
-## Deployment
+## Deployment Process
 
 ### Project was deployed using GitHub, Visual Studio Code and Heroku.
 1. Project was created in Visual Studio Code with a local folder. This was then linked to a Git repository and a first commit was pushed to link the two. The site was deloyed on Github. 
@@ -251,30 +250,18 @@ Booking (/reservations)
 - Bootstrap 5
 - Heroku
 - Litepicker (JS date picker)
-- HTML, CSS, JavaScript
-
+- HTML, CSS
+-JavaScript (external library scripts via CDN and custom JS for Litepicker)
 
 ## 6. Testing 
 
 Website checked on Safari and on Chrome on desktop and on IOS (Apple mobile). No bugs observed between browsers. 
 
-W3C Markup Validation Service 
-(https://validator.w3.org/) used for HTML validation
-
-W3C CSS validation service
-(https://jigsaw.w3.org/css-validator/) used for CSS validation.
-
-JSHint JavaScript validation service
-(https://jshint.com/) used for JS validation 
-
-
-
-
 ### Manual Testing
 
 #### Functionality Testing
 
-I tested each feature of the site to ensure it works as intended.
+I tested each feature of the site to ensure it works as intended and challenged possible bugs.
 
 | Feature | Action | Expected Result | Pass/Fail | Notes |
 | ------- | ------ | --------------- | --------- | ----- |
@@ -285,7 +272,7 @@ I tested each feature of the site to ensure it works as intended.
 | Booking a table |Follow `/bookings`. Fill out fields successfully and missing information.| Successful validation and form submission lead to a success page. Unsuccessful validation and form submission bring up validation errors for the user. A successful booking will be logged to the database and the table will no longer be available to book at that time on that date. An unsuccessful booking will not be logged to the database. | ✅ Pass | No notes |
 | View bookings | View past and future logged in via `/my-bookings` |If a user has bookings, they should be shown these bookings (both past and future) in stacked tables. Bookings for the future have button links to edit and cancel bookings. | ✅ Pass | Bookings viewable and bookings can be managed by user |
 | Edit booking  | Click “Edit" on a future booking | Booking form is shown, prepopulated with original booking details. User can amend date/time/table or add notes. A valid form sumbmission leads back to the `/my-bookings` page. Unsuccessful validation shows the user errors for them to fix. | ✅ Pass | No notes  |
-| Cancel booking | Click 'Cancel' on a future booking | A confirmation message is shown to the user, leading to a cancellation confirmation page following approval by the user | ✅ Pass | Confirmation page links back to the homepage |
+| Cancel booking | Click 'Cancel' on a future booking | A confirmation message is shown to the user, leading to a cancellation confirmation page following approval by the user (UPDATE: bug appeared during final testing (see final resolved bug note below)) | ✅ Pass | Confirmation page links back to the homepage |
 | Log out | Following the log out link in navbar whilst logged in | User is logged out and is returned to `/home` | ✅ Pass | No notes |
 | Booking an already booked table | Booking a specific table at a time and date on which it is already booked | User friendly validation error shown on `/edit-booking` page. Validation error shown on `/bookings` however it is not as user friendly. | ⚠️ Partial | Given more time the validation errors would be consistent |
 
@@ -441,11 +428,19 @@ Desktop scores
 
 8) Adding postgreSQL caused an issue with Heroku deployment due to missing dependencies. Resolved by deleting old migrations and remaking them after adding postgreSQL to the local environment.
 
-## 7. Testing
+9) Added POST method (within confirmation button on booking_cancel.html) to cancel booking view to resolve issue with form not submitting changes.
+
+### CSS, HTML and Python Validation
+
 ###  CSS validation
+(W3C CSS validation service
+(https://jigsaw.w3.org/css-validator/) used for CSS validation.)
 <img src="development/images/css_validation.webp">
 
 ### HTML validation
+
+W3C Markup Validation Service 
+(https://validator.w3.org/) used for HTML validation
 
 ### `/home`
 <img src="development/images/home_html.webp">
@@ -471,24 +466,70 @@ Steps taken to resolve errors:
 * Main attribute converted to div to prevent multiple main tags on a page
 * Trailing slashes removed from booking/edit templates
 
-Pep8 validation
+Pep8 validation (https://www.codewof.co.nz/style/python3/ and https://www.minifier.org/python-beautifier used to locate and resolve issues)
+
+### Booking_system_app
 admin.py 
-<img src="">
+<img src="development/images/admin_booking.webp">
 
 apps.py
-<img src="">
+<img src="development/images/apps_booking.webp">
 
 forms.py
-<img src="">
+<img src="development/images/forms_booking.webp">
 
-models.py 
-<img src="">
+models.py
+<img src="development/images/models_booking.webp">
 
 urls.py
-<img src="">
+<img src="development/images/urls_booking.webp">
 
 views.py
-<img src="">
+<img src="development/images/views_booking.webp">
+
+### Main Project Folder
+
+settings.py
+<img src="development/images/settings_main_project.webp">
+
+urls.py
+<img src="development/images/urls_main_project.webp">
+
+wsgi.py
+<img src="development/images/wsgi_main_project.webp">
+
+### User_Bookings
+apps.py
+<img src="development/images/apps_user_bookings.webp">
+
+urls.py
+<img src="development/images/urls_user_bookings.webp">
+
+views.py
+<img src="development/images/views_user_bookings.webp">
+
+
+### Steps taken to resolve errors:
+* Lines shortened to under 79 characters, where possible without breaking code logic
+* Added necessary imports
+* Removed unused variables and imports
+* Fixed indentation issues
+* Fixed missing blank lines at end of files
+* Fixed missing two blank lines between classes and functions
+* Fixed missing spaces after commas and around operators
+* Fixed docstrings where missing
+
+## 7. Security Considerations
+* SECRET_KEY and other sensitive information stored in env.py file, not in main settings.py file.
+* Debug set to False for production deployment.
+* Used Django's built-in authentication system for user registration and login. Users passwords are hashed and securely stored.
+* Used HTTPS for secure communication (handled by Heroku).
+* Validated and sanitized user inputs in forms to prevent SQL injection and XSS attacks.
+* Used Django's CSRF protection for forms.
+
+### Reflections on Security Issues Encountered
+* Mistakenly committed creds.json to GitHub early in development. Removed file and regenerated credentials to ensure security.
+* Mistakenly missed adding db.sqlite3 to .gitignore early in development. Removed file from GitHub and added to .gitignore to ensure security. Although the project uses PostgreSQL in production, this was important to maintain best practices.
 
 ## 8. Next Step Features	
 

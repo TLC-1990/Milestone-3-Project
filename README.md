@@ -199,31 +199,61 @@ Booking (/reservations)
 ---
 ## 5. Deployment
 
-## Installation & Usage
+## Deployment Steps 
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/TLC-1990/Milestone-3-Project/
    cd milestone-3
    ```
-2. Install dependencies:
+2. Set Up Environment Variables
+
+   Create an env.py file or set environment variables for SECRET_KEY, database credentials, and any third-party API keys.
+   On Heroku, add these variables via the dashboard under Settings > Config Vars.
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-3. Run migrations:
+4. Run migrations:
    ```bash
    python manage.py migrate
    ```
-4. Start the development server:
+   * On Heroku, use:
    ```bash
-   python manage.py runserver
+   heroku run python manage.py migrate
    ```
-5. Access the site at `http://localhost:8000/`
+5. Collect static files:
+   ```bash
+   python manage.py collectstatic
+   ```
+   * Whitenoise will serve static files in production.
+6. Configure Allowed Hosts:
+   In settings.py, set ALLOWED_HOSTS to include your Heroku app domain and any local domains.
+7. Set Debug Mode: 
+   Ensure DEBUG = False in production for security.
+8. Prepare Procfile:
+   Ensure your Procfile is present and contains:
+   web: gunicorn my_project.wsgi
+9. Deploy to Heroku:
+   * Push your code to Heroku using Git.
+   * Add necessary Heroku add-ons (e.g., Heroku Postgres for the database).
+10. Check Logs: 
+   For troubleshooting, use:
+   heroku logs --tail
+11. Update Requirements:
+   Keep requirements.txt up to date with all dependencies.
+12. Use .gitignore:
+   Ensure .gitignore includes sensitive files (e.g., env.py, db.sqlite3) and unnecessary local files.
+13. Access the Site:
+   Visit your Heroku app URL to view the deployed site.
+  HTTPS://milestone-3-ede96df867cb.herokuapp.com/home/ 
 
 ---
 
-## Deployment Process
+## Deployment Process (further notes)
 
-### Project was deployed using GitHub, Visual Studio Code and Heroku.
+#### Project was deployed using GitHub, Visual Studio Code and Heroku.
+
 1. Project was created in Visual Studio Code with a local folder. This was then linked to a Git repository and a first commit was pushed to link the two. The site was deloyed on Github. 
 
 2. A new Heroku project was created and linked to the GitHub repository. This handled deployments throughout the project. 

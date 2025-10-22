@@ -430,7 +430,7 @@ Desktop scores
 
 9) Added POST method (within confirmation button on booking_cancel.html) to cancel booking view to resolve issue with form not submitting changes.
 
-### CSS, HTML and Python Validation
+### CSS, HTML, Python and JS Validation
 
 ###  CSS validation
 (W3C CSS validation service
@@ -466,6 +466,7 @@ Steps taken to resolve errors:
 * Main attribute converted to div to prevent multiple main tags on a page
 * Trailing slashes removed from booking/edit templates
 
+### Python validation
 Pep8 validation (https://www.codewof.co.nz/style/python3/ and https://www.minifier.org/python-beautifier used to locate and resolve issues)
 
 ### Booking_system_app
@@ -519,6 +520,11 @@ views.py
 * Fixed missing spaces after commas and around operators
 * Fixed docstrings where missing
 
+### JavaScript Validation
+JSLint (https://jslint.com/) used for JS validation
+
+Validation of custom JS code for Litepicker datepicker used on booking form page (/bookings) and edit booking page (/my-bookings/<pk>/edit/) revealed no issues other than single quotes being used instead of double quotes. Edited to use double quotes for consistency.
+
 ## 7. Security Considerations
 * SECRET_KEY and other sensitive information stored in env.py file, not in main settings.py file.
 * Debug set to False for production deployment.
@@ -531,6 +537,8 @@ views.py
 * Mistakenly committed creds.json to GitHub early in development. Removed file and regenerated credentials to ensure security.
 * Mistakenly missed adding db.sqlite3 to .gitignore early in development. Removed file from GitHub and added to .gitignore to ensure security. Although the project uses PostgreSQL in production, this was important to maintain best practices.
 
+I will ensure to always double-check files before committing to GitHub in future projects to prevent similar issues.
+
 ## 8. Next Step Features	
 
 Having a messaging option would have been helpful, so that customers could have their queries answered either by an AI chat service or, ideally, by a member of staff at the restaurant. 
@@ -538,6 +546,8 @@ Having a messaging option would have been helpful, so that customers could have 
 Sending the bookings to GoogleSheets or GoogleCalendar for staff at the restaurant to view bookings would have been useful. 
 
 I would have liked to add photos of the food to the menu items, so users would be more engaged and keen to make a booking. 
+
+If the restaurant had multiple locations, I would have liked to add a location choice to the booking form.
 
 
 ## 9. Coding Sources
@@ -622,7 +632,15 @@ OpenAI consulted to assist with basic html template creation, then heavily adapt
   </tbody>
 </table>
 
+## Reflection on project
+
+This project has been a steep learning curve but I have enjoyed the challenge of creating a functional booking system using Django and Python. 
+
+Taking my time, reading the documentation and seeking help when needed has helped me to overcome the various (sometimes multiple!) issues I have faced.  
+
+This has helped me feel more confident in my coding ability, and in being able to recognise and resolve bugs. Overall , I am pleased with the end result and feel that I have created a functional, user-friendly website that meets the initial project goals.
 
 ## 11. Acknowledgements 
 * Dr Raghav Kovvuri (HE Lecturer- Computing at University Centre of Peterborough) for support and advice and understanding throughout the course. 
 * Iuliia Konovalova, my wonderful, knowledgeable mentor. Thank you for trying to help stop my panic. 
+* My family and friends for their patience and support throughout the course and for the steady supply of black coffee, sweets and the odd shoulder to cry on!

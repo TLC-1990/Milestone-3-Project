@@ -17,7 +17,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
-DEBUG = True 
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'milestone-3-ede96df867cb.herokuapp.com',

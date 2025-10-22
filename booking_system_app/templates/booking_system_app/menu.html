@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<main class="container mt-5">
+<div class="container mt-5">
 
-    <h3 class="display-3 menu-titles">Daily Menu</h3>
+    <h2 class="display-4 menu-titles">Daily Menu</h2>
     <div class="container-fluid" id="menu-container">
         <div class="row">
             <div class="col col-md-6 col-sm-12 mb-4">
@@ -74,8 +74,9 @@
             </p>
         </div>
     </div>
+    <hr>
     <section class="reviews mt-5">
-        <h3 class="display-3 menu-titles">Don't take our word for it, read our reviews! 📝 </h3>
+        <h3 class="display-4 menu-titles text-center"> 📝 Don't take our word for it, <br> read our reviews! 📝 </h3>
 
         <div class="row">
             <div class="col-12 mb-4">
@@ -105,5 +106,5 @@
         </div>
     </section>
 
-</main>
+</div>
 {% endblock %}

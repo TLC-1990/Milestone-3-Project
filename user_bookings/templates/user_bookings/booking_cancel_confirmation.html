@@ -3,6 +3,13 @@
 
 {% block content %}
 <div class="container mt-4 text-center">
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to cancel your booking for <strong>{{ booking.date|date:"d M Y" }}</strong> at
+            <strong>{{ booking.time_slot|time:"H:i" }}</strong>?</p>
+        <button type="submit" class="btn btn-danger mt-2">Confirm Cancel</button>
+        <a href="{% url 'user_booking_list' %}" class="btn btn-secondary mt-2">Back to my bookings</a>
+    </form>
     <h2> Sorry to see you go! </h2>
     <h4> 🌭 Let's ketchup again soon 🌭 </h4>
     <a href="{% url 'home' %}" class="btn btn-secondary mt-2"> Home </a>

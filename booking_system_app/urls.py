@@ -1,3 +1,4 @@
+"""URL configurations for the booking system app."""
 from django.urls import path
 from . import views
 
@@ -8,4 +9,3 @@ urlpatterns = [
     path("success/", views.reservation_success, name="reservation_success"),
     path("bookings/", views.book_table, name="book_table"),
 ]
-

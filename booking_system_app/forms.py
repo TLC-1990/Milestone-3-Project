@@ -1,4 +1,4 @@
-
+"""Forms for the booking_system_app."""
 from django import forms
 from .models import Table, TableReservationSlot
 from django.forms.widgets import DateInput
@@ -16,7 +16,10 @@ TIME_SLOTS = [
     ("16:00", "4:00 PM"),
 ]
 
+
 class TableReservationForm(forms.ModelForm):
+    """Form for booking a table reservation slot."""
+
     customer_name = forms.CharField(
         label="Your Name",
         required=True,
@@ -67,24 +70,31 @@ class TableReservationForm(forms.ModelForm):
         })
     )
 
-    available_amount = forms.IntegerField(widget=forms.HiddenInput(), required=False)
+    available_amount = forms.IntegerField(widget=forms.HiddenInput(),
+                                          required=False)
 
     class Meta:
+        """Meta class for TableReservationForm."""
+
         model = TableReservationSlot
-        fields = ["customer_name", "table", "date", "time", "amount", "notes", "email"]
+        fields = ["customer_name", "table", "date",
+                  "time", "amount", "notes", "email"]
 
     def __init__(self, *args, **kwargs):
+        """Initialize the form, setting initial time if editing an existing instance."""
         super().__init__(*args, **kwargs)
         if self.instance and self.instance.pk and self.instance.time_slot:
             self.fields["time"].initial = self.instance.time_slot.strftime("%H:%M")
 
     def clean_date(self):
+        """Validate that the selected date is not in the past."""
         selected_date = self.cleaned_data['date']
         if selected_date < date.today():
             raise forms.ValidationError("You cannot book a table in the past!")
         return selected_date
 
     def save(self, commit=True):
+        """Override save to handle time and date fields properly."""
         instance = super().save(commit=False)
         selected_date = self.cleaned_data["date"]
         selected_time = self.cleaned_data["time"]
@@ -95,4 +105,3 @@ class TableReservationForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
-    
